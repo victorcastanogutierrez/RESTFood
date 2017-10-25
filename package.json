@@ -1,0 +1,24 @@
+{
+  "name": "restfood",
+  "version": "1.0.0",
+  "description": "Restaurant portal",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/victorcastanogutierrez/Restaurantportal.git"
+  },
+  "keywords": [
+    "Restaurant",
+    "menu",
+    "food"
+  ],
+  "author": "Ignacio Fernández, Víctor Castaño",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/victorcastanogutierrez/Restaurantportal/issues"
+  },
+  "homepage": "https://github.com/victorcastanogutierrez/Restaurantportal#readme"
+}
