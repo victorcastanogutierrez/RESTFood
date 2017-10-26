@@ -31,3 +31,16 @@ input[type='checkbox'] {
 table {
     border: none;
 }
+
+.basement {
+    align-items: baseline;
+    vertical-align: center;
+}
+
+.green {
+    background: #5CB86E;
+}
+
+.whitecolor {
+    color: white;
+}
