@@ -12,3 +12,18 @@ ol li {
 ol li input[type='checkbox'] {
     margin-right: 20px;
 }
+
+.bgImage {
+    background-image: url("http://www.domainedefontenille.com/image/images_site/33/le-champ-des-lunes-restaurant-gastronomique-au-coeur-du-luberon-fond-background.jpg");
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.black {
+    color: rgb(41, 41, 41);
+}
+
+.black h1 {
+    font-size: 1.5em;
+}

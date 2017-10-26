@@ -1,11 +1,10 @@
-{% extends "../base.html" %} 
-{% block contenido_principal %}
-<div class="py-5" style="background-image: url(&quot;https://pingendo.github.io/templates/sections/assets/form_red.jpg&quot;);">
+{% extends "../base.html" %} {% block contenido_principal %}
+<div class="bgImage py-5">
     <div class="container">
         <div class="row">
             <div class="col-md-6 text-white">
-                <h1 class="text-center text-md-left display-3">Pide lo que quieras</h1>
-                <p class="lead">¿A qué estás esperando?</p>
+                <h1 class="text-center text-md-left display-3 black">Pide lo que quieras</h1>
+                <p class="lead black">¿A qué estás esperando?</p>
             </div>
             <div class="col-md-6" id="book">
                 <div class="card" id="regCard">
@@ -54,8 +53,6 @@
         </div>
     </div>
 </div>
-{% endblock %}
-
-{% block script_adicional %}
-    <script src="scripts/acceso.js"></script>
+{% endblock %} {% block script_adicional %}
+<script src="scripts/acceso.js"></script>
 {% endblock %}
