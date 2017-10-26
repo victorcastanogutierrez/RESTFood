@@ -47,4 +47,15 @@ table {
 
 .menu {
     display: none;
+    flex-direction: column;
+}
+
+.scrollable {
+    margin-top: 10px;
+    overflow: scroll;
+    display: flex;
+    width: 40%;
+    flex-direction: column;
+    align-self: center;
+    height: 40%;
 }

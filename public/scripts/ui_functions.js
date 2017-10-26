@@ -14,3 +14,21 @@ function addToMenu(element) {
         $(`#${element.value}`).remove();
     }
 }
+
+
+function goToMakeMenu() {
+    event.preventDefault();
+    $('#infoGeneral').css("display", "none");
+    $('#menu').css("display", "flex");
+}
+
+function addToMenu() {
+    event.preventDefault();
+    let nombre = $('#nombreplato').val();
+    let precio = $('#precioplato').val();
+    $("#scrollable").append(`
+        <p>${nombre} - ${precio}</p>
+    `);
+    $('#nombreplato').val("");
+    $('#precioplato').val("");
+}

@@ -17,11 +17,21 @@
                         <label>Página Web</label>
                         <input type="text" name="web" class="form-control" placeholder="Introduce la web del restaurante">
                     </div>
-                    <button class="btn btn-primary">Pasar a añadir </button>
+                    <button onclick="goToMakeMenu()" class="btn btn-primary">Pasar a añadir </button>
                 </form>
             </div>
-            <div id="menu" class="col-md-12">
-
+            <div id="menu" class="menu col-md-12">
+                <form class="">
+                    <div id="scrollable" class="scrollable"></div>
+                    <div class="form-group">
+                        <h1 class="">Crear Restaurante</h1>
+                        <label>Nombre del plato</label>
+                        <input id="nombreplato" type="text" name="nombreplato" class="form-control" placeholder="Introduce el nombre del plato">
+                        <label>Precio del plato</label>
+                        <input id="precioplato" type="number" min="0" name="precioplato" class="form-control" placeholder="Introduce el precio del plato">
+                    </div>
+                    <button onclick="addToMenu()" class="btn btn-primary">Añadir Plato </button>
+                </form>
             </div>
         </div>
     </div>

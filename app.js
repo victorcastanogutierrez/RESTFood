@@ -22,11 +22,15 @@ app.use(expressSession({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(express.static("public"));
+
+//Router
+require("./routes/router.js")(app, express, swig);
+
 //Rutas
 require("./routes/rusuarios.js")(app, swig, userGestorDB);
 require("./routes/rrestaurantes.js")(app, swig, userGestorDB);
 
-app.use(express.static("public"));
 
 //Variables
 app.set('clave', 'supersegura');
