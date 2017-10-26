@@ -3,7 +3,7 @@ var express = require('express');
 var app = express();
 var expressSession = require('express-session');
 var mongo = require('mongodb');
-var swig  = require('swig');
+var swig = require('swig');
 var bodyParser = require('body-parser');
 var crypto = require('crypto');
 
@@ -17,19 +17,24 @@ app.use(expressSession({
     saveUninitialized: true
 }));
 
-app.use(bodyParser.json()); 
-app.use(bodyParser.urlencoded({ extended: true })); 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 //Rutas
-require("./routes/rusuarios.js")(app,swig, userGestorDB); 
+require("./routes/rusuarios.js")(app, swig, userGestorDB);
+require("./routes/rrestaurantes.js")(app, swig, userGestorDB);
+
+
+app.use(express.static("views/public"));
+
 
 //Variables
 app.set('port', 8081);
-app.set('db','mongodb://localhost:27017/restfood');
-app.set('clave','supersegura');
-app.set('crypto',crypto);
+app.set('db', 'mongodb://localhost:27017/restfood');
+app.set('clave', 'supersegura');
+app.set('crypto', crypto);
 
 // lanzar el servidor
 app.listen(app.get('port'), function() {
-	console.log("Servidor activo");
+    console.log("Servidor activo");
 })

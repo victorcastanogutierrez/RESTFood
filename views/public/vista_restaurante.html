@@ -1,0 +1,30 @@
+{% extends "../base.html" %} {% block contenido_principal %}
+<div id="restaurante" class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h1 class="">Casa Carmen
+                    <br>
+                </h1>
+                <ol class "">
+                    <li><input class="form-check-input" type="checkbox" id="check1" value="Escalopines"> Escalopines</li>
+                    <li><input class="form-check-input" type="checkbox" id="check2" value="Filete"> Filete</li>
+                    <li><input class="form-check-input" type="checkbox" id="check3" value="Chuleta"> Chuleta</li>
+                    <li><input class="form-check-input" type="checkbox" id="check4" value="Cachopo"> Cachopo</li>
+                </ol>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header"> Casa Carmen</div>
+                    <div class="card-body" id="pedidos">
+                        <h4 class="center">Pedido</h4>
+                        <p id="contenidoPedido" class="p-y-1">
+                        </p>
+                        <button type="submit" class="btn btn-primary center">Pedir</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
