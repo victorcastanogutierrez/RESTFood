@@ -24,7 +24,9 @@ module.exports = function(app, swig, gestorDBUsuarios) {
             existeUsuario(
                 gestorDBUsuarios,
                 usuario.email,
-                () => {},
+                () => {
+                    res.send("el usuario ya existe");
+                },
 
                 () =>
                 gestorDBUsuarios.insertarUsuario(usuario, (id) => {
