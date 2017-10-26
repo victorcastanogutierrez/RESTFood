@@ -2,3 +2,13 @@
     color: #5E5E5E;
     margin-bottom: 5px;
 }
+
+ol li {
+    font-size: 1.3em;
+    list-style: none;
+    color: rgb(82, 82, 82);
+}
+
+ol li input[type='checkbox'] {
+    margin-right: 20px;
+}

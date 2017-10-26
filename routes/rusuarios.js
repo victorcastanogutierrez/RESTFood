@@ -4,6 +4,34 @@ module.exports = function(app, swig, gestorDBUsuarios) {
         res.send(respuesta);
     });
 
+    app.get("/login", function(req, res) {
+        let respuesta = swig.renderFile("views/public/login.html", {});
+        res.send(respuesta);
+    });
+
+    app.post("/login", function(req, res) {
+
+        const email = req.body.email;
+        const seguro = app
+            .get("crypto")
+            .createHmac("sha256", app.get("clave"))
+            .update(req.body.password)
+            .digest("hex");
+
+        let usuario = {
+            email: email,
+            password: seguro
+        }
+
+        existeUsuario(gestorDBUsuarios, usuario, () => {
+            console.log("existe")
+        }, () => {
+            console.log("no existe")
+        });
+
+
+    });
+
     app.post("/usuario", function(req, res) {
         const pw1 = req.body.password;
         const pw2 = req.body.password2;
@@ -50,6 +78,7 @@ function existeUsuario(gestorDBUsuarios, email, existe, noExiste) {
         if (usuarios == null || usuarios.length == 0) {
             noExiste();
         } else {
+            console.log(usuarios[0]);
             existe(usuarios[0]);
         }
     });
