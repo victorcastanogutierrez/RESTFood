@@ -1,12 +1,17 @@
 module.exports = function(app, swig, gestorDBUsuarios) {
-    app.get("/registro", function(req, res) {
-        let respuesta = swig.renderFile("views/public/registro.html", {});
-        res.send(respuesta);
-    });
 
     app.get("/login", function(req, res) {
-        let respuesta = swig.renderFile("views/public/login.html", {});
-        res.send(respuesta);
+        if (req.session.usuario != null) {
+            res.redirect("/restaurante");
+        } else {
+            let respuesta = swig.renderFile("views/public/login.html", {});
+            res.send(respuesta);
+        }
+    });
+
+    app.get("/logout", function(req, res) {
+        req.session.usuario = null;
+        res.redirect("/login");
     });
 
     app.post("/login", function(req, res) {
@@ -20,9 +25,12 @@ module.exports = function(app, swig, gestorDBUsuarios) {
 
         existeUsuario(gestorDBUsuarios, email, (user) => {
             if (user.password === seguro) {
+                console.log("Entra "+usuarios[0].email);
+                req.session.usuario = usuarios[0].email;
                 res.redirect("/restaurante");
             } else {
                 //TODO contraseña incorrecta;
+                req.session.usuario = null;
             }
 
         }, () => {
@@ -30,6 +38,15 @@ module.exports = function(app, swig, gestorDBUsuarios) {
         });
 
 
+    });
+
+    app.get("/registro", function(req, res) {
+        if (req.session.usuario != null) {
+            res.redirect("/restaurante");
+        } else {
+            let respuesta = swig.renderFile("views/public/registro.html", {});
+            res.send(respuesta);
+        }
     });
 
     app.post("/usuario", function(req, res) {
@@ -61,7 +78,8 @@ module.exports = function(app, swig, gestorDBUsuarios) {
                     if (id == null) {
                         res.send("error");
                     } else {
-                        res.send(id)
+                        req.session.usuario = usuario.email;
+                        res.redirect("/restaurante");
                     }
                 })
             );
