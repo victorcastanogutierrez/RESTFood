@@ -8,6 +8,8 @@ var bodyParser = require('body-parser');
 var crypto = require('crypto');
 
 //DB
+app.set('port', 8081);
+app.set('db', 'mongodb://admin:UDKbzgrue5Zp@ds163034.mlab.com:63034/restfood');
 var { UserGestorDB } = require('./modules/userGestorDB.js');
 const userGestorDB = new UserGestorDB(app, mongo);
 
@@ -29,8 +31,6 @@ app.use(express.static("views/public"));
 
 
 //Variables
-app.set('port', 8081);
-app.set('db', 'mongodb://localhost:27017/restfood');
 app.set('clave', 'supersegura');
 app.set('crypto', crypto);
 
