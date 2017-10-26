@@ -9,7 +9,7 @@ module.exports = function(app, swig, gestorDBUsuarios) {
         if (req.session.usuario != null) {
             res.redirect("/restaurante");
         } else {
-            let respuesta = swig.renderFile("views/public/acceso.html", {});
+            let respuesta = swig.renderFile("views/acceso.html", {});
             res.send(respuesta);
         }
     });
