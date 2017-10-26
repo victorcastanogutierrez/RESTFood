@@ -18,13 +18,13 @@ module.exports = function(app, swig, gestorDBUsuarios) {
             .update(req.body.password)
             .digest("hex");
 
-        let usuario = {
-            email: email,
-            password: seguro
-        }
+        existeUsuario(gestorDBUsuarios, email, (user) => {
+            if (user.password === seguro) {
+                res.redirect("/restaurante");
+            } else {
+                //TODO contraseña incorrecta;
+            }
 
-        existeUsuario(gestorDBUsuarios, usuario, () => {
-            console.log("existe")
         }, () => {
             console.log("no existe")
         });
@@ -78,7 +78,6 @@ function existeUsuario(gestorDBUsuarios, email, existe, noExiste) {
         if (usuarios == null || usuarios.length == 0) {
             noExiste();
         } else {
-            console.log(usuarios[0]);
             existe(usuarios[0]);
         }
     });
