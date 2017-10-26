@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 require("./routes/rusuarios.js")(app, swig, userGestorDB);
 require("./routes/rrestaurantes.js")(app, swig, userGestorDB);
 
-app.use(express.static("views/public"));
+app.use(express.static("public"));
 
 //Variables
 app.set('clave', 'supersegura');
