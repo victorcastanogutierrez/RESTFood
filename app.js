@@ -32,19 +32,19 @@ app.use(express.static("views/public"));
 app.set('clave', 'supersegura');
 app.set('crypto', crypto);
 
-app.get('/', function (req, res) {
-	res.redirect('/acceso');
+app.get('/', function(req, res) {
+    res.redirect('/acceso');
 })
 
-app.get('*', function(req, res){
-	res.redirect('/acceso');
+app.get('*', function(req, res) {
+    res.redirect('/acceso');
 });
 
 require("./routes/routers.js")(app, express, swig);
 
-app.use( function (err, req, res, next ) {
+app.use(function(err, req, res, next) {
     console.log("Error producido: " + err); //we log the error in our db
-    if (! res.headersSent) { 
+    if (!res.headersSent) {
         res.status(400);
         res.send("Recurso no disponible");
     }

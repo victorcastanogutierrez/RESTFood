@@ -5,14 +5,29 @@
             <div class="col-md-8">
                 <h1 class="">Casa Carmen</h1>
                 <br/>
-                <ol class "">
-                    <li><input class="form-check-input" type="checkbox" id="check1" value="Escalopines"> Escalopines al Cabrales</li>
-                    <li><input class="form-check-input" type="checkbox" id="check2" value="Filete"> Filete de panga</li>
-                    <li><input class="form-check-input" type="checkbox" id="check3" value="Chuleta"> Chuleta de vaca</li>
-                    <li><input class="form-check-input" type="checkbox" id="check4" value="Cachopo"> Cachopo vaqueiro con chosco de Tineo</li>
-                </ol>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td><input class="form-check-input" type="checkbox" id="check1" value="Escalopines"> </td>
+                            <td>Escalopines Al Cabrales</td>
+                            <td>23€</td>
+                        </tr>
+                        <tr>
+                            <td><input class="form-check-input" type="checkbox" id="check1" value="Cachopo"> </td>
+                            <td>Cachopo Vaqueiro con chosco de tineo</td>
+                            <td>700€</td>
+                        </tr>
+                        <tr>
+                            <td><input class="form-check-input" type="checkbox" id="check1" value="Filete"> </td>
+                            <td>Filete de Buey</td>
+                            <td>13€</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             <div class="col-md-4">
+                <br/>
+                <br/>
                 <div class="card">
                     <div class="card-header"> Casa Carmen</div>
                     <div class="card-body" id="pedidos">
@@ -26,4 +41,6 @@
         </div>
     </div>
 </div>
+{% endblock %} {% block script_adicional %}
+<script src="scripts/ui_functions.js"></script>
 {% endblock %}
