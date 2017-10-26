@@ -1,17 +1,17 @@
 module.exports = function(app, swig, gestorDBUsuarios) {
 
-    app.get("/login", function(req, res) {
+    app.get("/logout", function(req, res) {
+        req.session.usuario = null;
+        res.redirect("/acceso");
+    });
+    
+    app.get("/acceso", function(req, res) {
         if (req.session.usuario != null) {
             res.redirect("/restaurante");
         } else {
-            let respuesta = swig.renderFile("views/public/login.html", {});
+            let respuesta = swig.renderFile("views/public/acceso.html", {});
             res.send(respuesta);
         }
-    });
-
-    app.get("/logout", function(req, res) {
-        req.session.usuario = null;
-        res.redirect("/login");
     });
 
     app.post("/login", function(req, res) {
@@ -25,8 +25,8 @@ module.exports = function(app, swig, gestorDBUsuarios) {
 
         existeUsuario(gestorDBUsuarios, email, (user) => {
             if (user.password === seguro) {
-                console.log("Entra "+usuarios[0].email);
-                req.session.usuario = usuarios[0].email;
+                console.log("Entra "+user.email);
+                req.session.usuario = user.email;
                 res.redirect("/restaurante");
             } else {
                 //TODO contraseña incorrecta;
@@ -38,15 +38,6 @@ module.exports = function(app, swig, gestorDBUsuarios) {
         });
 
 
-    });
-
-    app.get("/registro", function(req, res) {
-        if (req.session.usuario != null) {
-            res.redirect("/restaurante");
-        } else {
-            let respuesta = swig.renderFile("views/public/registro.html", {});
-            res.send(respuesta);
-        }
     });
 
     app.post("/usuario", function(req, res) {
