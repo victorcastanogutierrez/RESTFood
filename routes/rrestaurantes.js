@@ -5,4 +5,9 @@ module.exports = function(app, swig, gestorDBUsuarios) {
         res.send(respuesta);
     });
 
+    app.get("/p/crearrestaurante", function(req, res) {
+        var respuesta = swig.renderFile('views/crear_restaurante.html', {});
+        res.send(respuesta);
+    });
+
 }

@@ -1,0 +1,30 @@
+{% extends "base.html" %} {% block contenido_principal %}
+<div class="py-5">
+    <div class="container">
+        <div class="row">
+            <div id="infoGeneral" class="col-md-12">
+                <h1 class="">Crear Restaurante</h1>
+                <form class="" method="post" action="/restaurante">
+                    <div class="form-group">
+                        <label>Nombre del restaurante</label>
+                        <input type="text" name="nombre" class="form-control" placeholder="Introduce el nombre del restaurante">
+                        <label>Dirección del restaurante</label>
+                        <input type="text" name="direccion" class="form-control" placeholder="Introduce la dirección del restaurante">
+                        <label>Horario del restaurante</label>
+                        <input type="text" name="horario" class="form-control" placeholder="Introduce el horario del restaurante">
+                        <label>Telefono del restaurante</label>
+                        <input type="text" name="telefono" class="form-control" placeholder="Introduce el telefono del restaurante">
+                        <label>Página Web</label>
+                        <input type="text" name="web" class="form-control" placeholder="Introduce la web del restaurante">
+                    </div>
+                    <button class="btn btn-primary">Pasar a añadir </button>
+                </form>
+            </div>
+            <div id="menu" class="col-md-12">
+
+            </div>
+        </div>
+    </div>
+</div> {% endblock %} {% block script_adicional %}
+<script src="scripts/ui_functions.js"></script>
+{% endblock %}

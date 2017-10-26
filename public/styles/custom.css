@@ -44,3 +44,7 @@ table {
 .whitecolor {
     color: white;
 }
+
+.menu {
+    display: none;
+}
