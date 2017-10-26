@@ -36,3 +36,11 @@ table {
     align-items: baseline;
     vertical-align: center;
 }
+
+.green {
+    background: #5CB86E;
+}
+
+.whitecolor {
+    color: white;
+}
