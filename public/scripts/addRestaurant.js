@@ -1,5 +1,6 @@
 let menuPlates = [];
 let currentRestaurant;
+let counter = 0;
 
 function addToMenu(element) {
     if (element.checked) {
@@ -24,7 +25,7 @@ function addToMenu() {
 
     if (nombre !== "" && precio !== "") {
         $("#scrollable").append(`
-        <p>${nombre} - ${precio}</p>
+        <p id="plato${counter}">${nombre} - ${precio} <button class="btn btn-danger" id="btn_${counter}" onclick="deletePlato()"> borrar</button></p>  
     `);
         let plate = {
             nombre: nombre,
@@ -33,7 +34,15 @@ function addToMenu() {
         menuPlates.push(plate);
         $("#nombreplato").val("");
         $("#precioplato").val("");
+        counter++;
     }
+}
+
+function deletePlato() {
+    let paragraphID = event.target.id.split("_")[1];
+    menuPlates.splice(Number(paragraphID), 1);
+    $(`#plato${paragraphID}`).remove();
+    counter--;
 }
 
 function atrasAInfo() {
