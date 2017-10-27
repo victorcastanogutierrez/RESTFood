@@ -34,12 +34,21 @@
                 <div class="col-md-10">
                     {% for restaurante in restaurantes %}
                     <div class="card my-5 py-3 pl-3 pr-3">
-                        <div class="card-block">
-                            <h4 class="card-title">{{ restaurante.nombre }}</h4>
-                            <h6 class="card-subtitle mb-2 text-muted">Teléfono: {{ restaurante.telefono }}</h6>
-                            <p class="card-text">{{ restaurante.horario }}</p>
-                            <p class="card-text">{{ restaurante.direccion }}</p>
-                            <a href="#" class="card-link">{{ restaurante.web }}</a>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <img src="https://b.zmtcdn.com/data/pictures/4/8307024/a3c43b15a53ee7434898a74f4a42dec4.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A" alt="W3Schools.com">
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="card-block">
+                                        <h4 class="card-title">{{ restaurante.nombre }}</h4>
+                                        <h6 class="card-subtitle mb-2 text-muted">Teléfono: {{ restaurante.telefono }}</h6>
+                                        <p class="card-text">{{ restaurante.horario }}</p>
+                                        <p class="card-text">{{ restaurante.direccion }}</p>
+                                        <a href="#" class="card-link">{{ restaurante.web }}</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     {% endfor %}
