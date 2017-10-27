@@ -5,15 +5,19 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB) {
         res.send(respuesta);
     });
 
+<<<<<<< HEAD
     app.post("/restaurante", function(req, res) {
+=======
+
+    app.post("/p/restaurante", function(req, res) {
+>>>>>>> 35d236892e6ff5069793cc9b51cb3c1383e407f3
         let restaurante = req.body;
-        console.log(restaurante);
         restauranteGestorDB.insertarRestaurante(restaurante, (id) => {
             res.redirect("/views/vista_home.html");
         })
     });
 
-    app.get("/crearrestaurante", function(req, res) {
+    app.get("/p/crearrestaurante", function(req, res) {
         var respuesta = swig.renderFile('views/crear_restaurante.html', {});
         res.send(respuesta);
     });
@@ -49,6 +53,7 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB) {
             var respuesta = swig.renderFile('views/vista_home.html', resp);
             res.send(respuesta);
         }); 
+
     });
 
 }
