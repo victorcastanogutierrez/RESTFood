@@ -5,6 +5,13 @@ module.exports = function(app, swig, gestorDBUsuarios) {
         res.send(respuesta);
     });
 
+
+    app.post("/restaurante", function(req, res) {
+        let restaurante = JSON.parse(req.body);
+        console.log(restaurante);
+        res.send("ok");
+    });
+
     app.get("/crearrestaurante", function(req, res) {
         var respuesta = swig.renderFile('views/crear_restaurante.html', {});
         res.send(respuesta);

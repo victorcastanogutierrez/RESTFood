@@ -59,3 +59,14 @@ table {
     align-self: center;
     height: 40%;
 }
+
+.scrollable p {
+    color: #5E5E5E;
+    font-size: 1.5em;
+}
+
+.botonera {
+    display: inline-flex;
+    justify-content: space-between;
+    width: 100%;
+}

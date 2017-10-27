@@ -7,34 +7,46 @@
                 <form class="" method="post" action="/restaurante">
                     <div class="form-group">
                         <label>Nombre del restaurante</label>
-                        <input type="text" name="nombre" class="form-control" placeholder="Introduce el nombre del restaurante">
+                        <input type="text" id="nombreRes" name="nombre" class="form-control" placeholder="Introduce el nombre del restaurante" required>
                         <label>Dirección del restaurante</label>
-                        <input type="text" name="direccion" class="form-control" placeholder="Introduce la dirección del restaurante">
+                        <input type="text" id="direccionRes" name="direccion" class="form-control" placeholder="Introduce la dirección del restaurante" required>
                         <label>Horario del restaurante</label>
-                        <input type="text" name="horario" class="form-control" placeholder="Introduce el horario del restaurante">
+                        <input type="text" id="horarioRes" name="horario" class="form-control" placeholder="Introduce el horario del restaurante" required>
                         <label>Telefono del restaurante</label>
-                        <input type="text" name="telefono" class="form-control" placeholder="Introduce el telefono del restaurante">
+                        <input type="text" id="telefonoRes" name="telefono" class="form-control" placeholder="Introduce el telefono del restaurante" required>
                         <label>Página Web</label>
-                        <input type="text" name="web" class="form-control" placeholder="Introduce la web del restaurante">
+                        <input type="text" id="webRes" name="web" class="form-control" placeholder="Introduce la web del restaurante" required>
                     </div>
-                    <button onclick="goToMakeMenu()" class="btn btn-primary">Pasar a añadir </button>
+                    <button onclick="goToMakeMenu()" class="btn btn-primary">Siguiente</button>
                 </form>
             </div>
             <div id="menu" class="menu col-md-12">
                 <form class="">
-                    <div id="scrollable" class="scrollable"></div>
                     <div class="form-group">
                         <h1 class="">Crear Restaurante</h1>
                         <label>Nombre del plato</label>
-                        <input id="nombreplato" type="text" name="nombreplato" class="form-control" placeholder="Introduce el nombre del plato">
+                        <input required id="nombreplato" type="text" name="nombreplato" class="form-control" placeholder="Introduce el nombre del plato">
                         <label>Precio del plato</label>
-                        <input id="precioplato" type="number" min="0" name="precioplato" class="form-control" placeholder="Introduce el precio del plato">
+                        <input required id="precioplato" type="number" min="0" name="precioplato" class="form-control" placeholder="Introduce el precio del plato">
                     </div>
                     <button onclick="addToMenu()" class="btn btn-primary">Añadir Plato </button>
                 </form>
+                <h3>Aquí verás los platos que vas añadiendo</h3>
+                <div id="scrollable" class="scrollable"></div>
+                <div class="botonera">
+                    <button onclick="atrasAInfo()" class="btn btn-primary">Atrás</button>
+                    <button onclick="siguienteAConfirmar()" class="btn btn-primary right">Siguiente</button>
+                </div>
+            </div>
+            <div id="confirmRestaurant" class="menu col-md-12">
+                <h1 class="">Confirmar restaurante</h1 </div>
+                <p id="currentCreation"></p>
+                <div class="botonera">
+                    <button onclick="atrasAMenu()" class="btn btn-primary">Atrás</button>
+                    <button onclick="confirm()" class="btn btn-primary right"> Confirmar Creación</button>
+                </div>
             </div>
         </div>
-    </div>
-</div> {% endblock %} {% block script_adicional %}
-<script src="scripts/ui_functions.js"></script>
-{% endblock %}
+    </div> {% endblock %} {% block script_adicional %}
+    <script src="scripts/addRestaurant.js"></script>
+    {% endblock %}
