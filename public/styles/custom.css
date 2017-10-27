@@ -70,3 +70,11 @@ table {
     justify-content: space-between;
     width: 100%;
 }
+
+.cardHover:hover {
+    background-color: #F2F2F2;
+}
+
+.menuLink {
+    white-space: nowrap;
+}

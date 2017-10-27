@@ -39,11 +39,7 @@ app.set('clave', 'supersegura');
 app.set('crypto', crypto);
 
 app.get('/', function(req, res) {
-    res.redirect('/acceso');
-})
-
-app.get('*', function(req, res) {
-    res.redirect('/acceso');
+    res.redirect('/home');
 });
 
 app.use(function(err, req, res, next) {
