@@ -12,6 +12,8 @@ app.set('port', 8081);
 app.set('db', 'mongodb://admin:UDKbzgrue5Zp@ds163034.mlab.com:63034/restfood');
 var { UserGestorDB } = require('./modules/userGestorDB.js');
 const userGestorDB = new UserGestorDB(app, mongo);
+var { RestauranteGestorDB } = require('./modules/restauranteGestorDB.js');
+const restauranteGestorDB = new RestauranteGestorDB(app, mongo);
 
 app.use(expressSession({
     secret: 'abcdefg',
@@ -29,7 +31,7 @@ require("./routes/router.js")(app, express, swig);
 
 //Rutas
 require("./routes/rusuarios.js")(app, swig, userGestorDB);
-require("./routes/rrestaurantes.js")(app, swig, userGestorDB);
+require("./routes/rrestaurantes.js")(app, swig, userGestorDB, restauranteGestorDB);
 
 
 //Variables

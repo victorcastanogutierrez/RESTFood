@@ -1,4 +1,4 @@
-module.exports = function(app, swig, gestorDBUsuarios) {
+module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB) {
 
     app.get("/restaurante", function(req, res) {
         var respuesta = swig.renderFile('views/vista_restaurante.html', {});
@@ -7,9 +7,11 @@ module.exports = function(app, swig, gestorDBUsuarios) {
 
 
     app.post("/restaurante", function(req, res) {
-        let restaurante = JSON.parse(req.body);
+        let restaurante = req.body;
         console.log(restaurante);
-        res.send("ok");
+        restauranteGestorDB.insertarRestaurante(restaurante, (id) => {
+            res.redirect("/views/vista_home.html");
+        })
     });
 
     app.get("/crearrestaurante", function(req, res) {

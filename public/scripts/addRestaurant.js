@@ -94,7 +94,7 @@ function confirm() {
     $.ajax({
             type: "POST",
             url: "/restaurante",
-            data: JSON.stringify(currentRestaurant),
+            data: currentRestaurant,
             dataType: "application/json"
         })
         .done(response => {
