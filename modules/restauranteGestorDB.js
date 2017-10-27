@@ -24,6 +24,25 @@ class RestauranteGestorDB extends DBConnector {
         });
     }
 
+    buscarRestaurantes(successCallback, errorCallback) {
+        this.getConnection((err, db) => {
+            if (err) {
+                if (errorCallback) {
+                    errorCallback(err);
+                }
+            } else {
+                var collection = db.collection("restaurantes");
+                collection.find().toArray(function(err, result) {
+                    if (err) {
+                        errorCallback(err);
+                    } else {
+                        successCallback(result);
+                    }
+                });
+            }
+        });
+    }
+
 }
 
 exports.RestauranteGestorDB = RestauranteGestorDB;

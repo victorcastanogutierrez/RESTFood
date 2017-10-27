@@ -1,18 +1,51 @@
 {% extends "base.html" %} {% block contenido_principal %}
-    <div class="container">
-        
-        <div class="col-lg-6">
-            {% for restaurante in restaurantes %}
-            <div class="card">
-                <div class="card-block">
-                    <h4 class="card-title">Card title</h4>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
+    <div class="py-5">
+        <div class="container">
+            <div class="row py-3">
+                <!-- Barra de búsqueda -->
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Buscar por
+                            </button>
+                            <div class="dropdown-menu">
+                                <h6 class="dropdown-header">Parámetro de búsqueda</h6>
+                                <a class="dropdown-item" selected="selected" href="#">Cebada 1</a>
+                                <a class="dropdown-item" href="#">Cebada 2</a>
+                                <a class="dropdown-item" href="#">Cebada 3</a>
+                                <div role="separator" class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Cebada separada 4</a>
+                            </div>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Buscar restaurante...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-info" type="button">Buscar</button>
+                        </span>
+                    </div>
                 </div>
+                <div class="col-md-3"></div>
             </div>
-            {% endfor %}
-        <div>
+
+            <!-- Restaurantes -->
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    {% for restaurante in restaurantes %}
+                    <div class="card my-5 py-3 pl-3 pr-3">
+                        <div class="card-block">
+                            <h4 class="card-title">{{ restaurante.nombre }}</h4>
+                            <h6 class="card-subtitle mb-2 text-muted">Teléfono: {{ restaurante.telefono }}</h6>
+                            <p class="card-text">{{ restaurante.horario }}</p>
+                            <p class="card-text">{{ restaurante.direccion }}</p>
+                            <a href="#" class="card-link">{{ restaurante.web }}</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        </div>
     </div>
 {% endblock %}
