@@ -58,14 +58,17 @@ function siguienteAConfirmar() {
     let horarioRes = $("#horarioRes").val();
     let telefonoRes = $("#telefonoRes").val();
     let webRes = $("#webRes").val();
-
+    let tipoRes = $('#tipoRes').find(":selected").text();
+    let tipoValue = $('#tipoRes').find(":selected").val();
     let restaurant = {
         nombre: nombreRes,
         direccion: direccionRes,
         horario: horarioRes,
         telefono: telefonoRes,
         web: webRes,
+        tipo: tipoValue,
         menu: menuPlates
+
     };
 
     currentRestaurant = restaurant;
@@ -80,7 +83,8 @@ function siguienteAConfirmar() {
             Dirección : ${horarioRes} <br/>
             Horario : ${horarioRes} <br/>
             Telefono : ${telefonoRes} <br/>
-            Web : ${webRes}
+            Web : ${webRes} <br/>
+            Tipo : ${tipoRes}
         </p>
     <h3>Platos Disponibles</h3>
     <p>
