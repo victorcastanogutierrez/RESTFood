@@ -5,12 +5,7 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB) {
         res.send(respuesta);
     });
 
-<<<<<<< HEAD
     app.post("/restaurante", function(req, res) {
-=======
-
-    app.post("/p/restaurante", function(req, res) {
->>>>>>> 35d236892e6ff5069793cc9b51cb3c1383e407f3
         let restaurante = req.body;
         restauranteGestorDB.insertarRestaurante(restaurante, (id) => {
             res.redirect("/views/vista_home.html");
