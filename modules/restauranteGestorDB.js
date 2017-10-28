@@ -5,16 +5,15 @@ class RestauranteGestorDB extends DBConnector {
         super(app, mongo);
     }
 
-    insertarRestaurante(restaurante, funcionCallback) {
+    insertarRestaurante(restaurante, funcionCallback, errCallback) {
         this.getConnection((err, db) => {
-            console.log("trato de insertar restaurante");
             if (err) {
                 funcionCallback(null);
             } else {
                 var collection = db.collection("restaurantes");
                 collection.insert(restaurante, function(err, result) {
                     if (err) {
-                        funcionCallback(null);
+                        errCallback();
                     } else {
                         funcionCallback(result.ops[0]._id);
                     }

@@ -111,15 +111,14 @@ function atrasAMenu() {
 
 function confirm() {
     $.ajax({
-            type: "POST",
-            url: "/p/restaurante",
-            data: currentRestaurant,
-            dataType: "application/json"
-        })
-        .done(response => {
-            alert("success");
-        })
-        .fail(response => {
-            console.log(response);
-        });
+    type: "POST",
+    url: "/p/restaurante",
+    data: currentRestaurant
+    })
+    .done(response => {
+        document.getElementById("misRestaurantes").click()
+    })
+    .fail(response => {
+
+    });
 }

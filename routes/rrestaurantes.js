@@ -24,9 +24,9 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB) {
     app.post("/p/restaurante", function(req, res) {
         let restaurante = req.body;
         restaurante.propietario = req.session.usuario;
-        restauranteGestorDB.insertarRestaurante(restaurante, id => {
+        restauranteGestorDB.insertarRestaurante(restaurante, (id) => {
             res.redirect("/p/misrestaurantes");
-        });
+        }, err => res.sendStatus(400, {}));
     });
 
     app.get("/p/crearrestaurante", function(req, res) {
