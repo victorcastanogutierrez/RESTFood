@@ -4,7 +4,7 @@ module.exports = function(app, swig, gestorDBUsuarios) {
         req.session.usuario = null;
         res.redirect("/acceso");
     });
-    
+
     app.get("/acceso", function(req, res) {
         if (req.session.usuario != null) {
             res.redirect("/restaurante");
@@ -25,9 +25,9 @@ module.exports = function(app, swig, gestorDBUsuarios) {
 
         existeUsuario(gestorDBUsuarios, email, (user) => {
             if (user.password === seguro) {
-                console.log("Entra "+user.email);
+                console.log("Entra " + user.email);
                 req.session.usuario = user.email;
-                res.redirect("/restaurante");
+                res.redirect("/home");
             } else {
                 //TODO contraseña incorrecta;
                 req.session.usuario = null;
@@ -70,7 +70,7 @@ module.exports = function(app, swig, gestorDBUsuarios) {
                         res.send("error");
                     } else {
                         req.session.usuario = usuario.email;
-                        res.redirect("/restaurante");
+                        res.redirect("/home");
                     }
                 })
             );

@@ -24,6 +24,49 @@ class RestauranteGestorDB extends DBConnector {
         });
     }
 
+    listarRestaurantes(criterio, successCallback, errorCallback) {
+        this.getConnection((err, db) => {
+            if (err) {
+                if (errorCallback) {
+                    errorCallback(err);
+                }
+            }
+            let collection = db.collection('restaurantes');
+            collection.find(criterio).toArray(function(err, restaurantes) {
+                if (err) {
+                    errorCallback(null);
+                } else {
+                    successCallback(restaurantes);
+                }
+                db.close();
+            });
+
+        });
+
+    }
+
+    borrarRestaurante(criterio, successCallback, errorCallback) {
+        this.getConnection((err, db) => {
+            if (err) {
+                if (errorCallback) {
+                    errorCallback(err);
+                }
+            } else {
+                let collection = db.collection('restaurantes');
+                collection.remove(criterio, function(err, result) {
+                    if (err) {
+                        errorCallback(null);
+                        u7
+                    } else {
+                        successCallback(result);
+                    }
+                    db.close();
+                });
+            }
+        });
+
+    }
+
     buscarRestaurantes(pagina, successCallback, errorCallback) {
         this.getConnection((err, db) => {
             if (err) {
@@ -34,13 +77,13 @@ class RestauranteGestorDB extends DBConnector {
                 var collection = db.collection("restaurantes");
                 collection.count(function(err, count) {
                     collection.find()
-                    .skip( (pagina-1)*4 ).limit( 4 ).toArray(function(err, result) {
-                        if (err) {
-                            errorCallback(err);
-                        } else {
-                            successCallback(result, count);
-                        }
-                    });
+                        .skip((pagina - 1) * 4).limit(4).toArray(function(err, result) {
+                            if (err) {
+                                errorCallback(err);
+                            } else {
+                                successCallback(result, count);
+                            }
+                        });
                 });
             }
         });
