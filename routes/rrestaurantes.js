@@ -4,7 +4,7 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB) {
         let criterio = {
             propietario: req.session.usuario
         };
-        restauranteGestorDB.listarRestaurantes(criterio, restaurantes => {
+        restauranteGestorDB.findAll('restaurantes', criterio, restaurantes => {
             var respuesta = swig.renderFile("views/mis_restaurantes.html", {
                 restaurantes: restaurantes
             });

@@ -26,7 +26,8 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB, pedi
         let criterio = {
             propietario: req.session.usuario
         };
-        pedidosGestorDB.listarPedidos(criterio, (pedidos) => {
+        pedidosGestorDB.findAll('pedidos', criterio, (pedidos) => {
+            pedidos.map(x => x.hora = new Date(x.hora));
             var respuesta = swig.renderFile('views/mis_pedidos.html', { pedidos: pedidos });
             res.send(respuesta);
         })

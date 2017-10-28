@@ -23,27 +23,6 @@ class RestauranteGestorDB extends DBConnector {
         });
     }
 
-    listarRestaurantes(criterio, successCallback, errorCallback) {
-        this.getConnection((err, db) => {
-            if (err) {
-                if (errorCallback) {
-                    errorCallback(err);
-                }
-            }
-            let collection = db.collection('restaurantes');
-            collection.find(criterio).toArray(function(err, restaurantes) {
-                if (err) {
-                    errorCallback(null);
-                } else {
-                    successCallback(restaurantes);
-                }
-                db.close();
-            });
-
-        });
-
-    }
-
     borrarRestaurante(criterio, successCallback, errorCallback) {
         this.getConnection((err, db) => {
             if (err) {
