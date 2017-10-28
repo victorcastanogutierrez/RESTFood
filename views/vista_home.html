@@ -1,115 +1,61 @@
 {% extends "base.html" %} {% block contenido_principal %}
-<<<<<<< HEAD
 <div class="py-5">
     <div class="container">
         <div class="row py-3">
             <!-- Barra de búsqueda -->
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <div class="input-group">
-                    <div class="input-group-btn">
-                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <form action="/home" id="busquedaForm">
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button id="btBusqueda" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Buscar por
                             </button>
-                        <div class="dropdown-menu">
-                            <h6 class="dropdown-header">Parámetro de búsqueda</h6>
-                            <a class="dropdown-item" selected="selected" href="#">Cebada 1</a>
-                            <a class="dropdown-item" href="#">Cebada 2</a>
-                            <a class="dropdown-item" href="#">Cebada 3</a>
-                            <div role="separator" class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Cebada separada 4</a>
+                            <div class="dropdown-menu">
+                                <h6 class="dropdown-header">Parámetro de búsqueda</h6>
+                                <a class="dropdown-item" href="#" data-pdsa-dropdown-val="nombre">Nombre</a>
+                                <a class="dropdown-item" href="#" data-pdsa-dropdown-val="direccion">Dirección</a>
+                                <a class="dropdown-item" href="#" data-pdsa-dropdown-val="web">Página web</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item busquedaTodos" href="/home">Buscar todos</a>
+                            </div>
                         </div>
-                    </div>
-                    <input type="text" class="form-control" placeholder="Buscar restaurante...">
-                    <span class="input-group-btn">
-                            <button class="btn btn-info" type="button">Buscar</button>
+                        <input name="busqueda" id="busquedaValue" type="text" class="form-control" placeholder="Buscar restaurante...">
+                        <input type="text" id="busquedaParam" name="param" hidden>
+                        <span class="input-group-btn">
+                            <button class="btn btn-info" type="submit" >Buscar</button>
                         </span>
-=======
-    <div class="py-5">
-        <div class="container">
-            <div class="row py-3">
-                <!-- Barra de búsqueda -->
-                <div class="col-md-3"></div>
-                <div class="col-md-6">
-                    <form action="/home" id="busquedaForm">
-                        <div class="input-group">
-                            <div class="input-group-btn">
-                                <button id="btBusqueda" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Buscar por
-                                </button>
-                                <div class="dropdown-menu">
-                                    <h6 class="dropdown-header">Parámetro de búsqueda</h6>
-                                    <a class="dropdown-item" href="#" data-pdsa-dropdown-val="nombre">Nombre</a>
-                                    <a class="dropdown-item" href="#" data-pdsa-dropdown-val="direccion">Dirección</a>
-                                    <a class="dropdown-item" href="#" data-pdsa-dropdown-val="web">Página web</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item busquedaTodos" href="/home">Buscar todos</a>
-                                </div>
-                            </div>   
-                            <input name="busqueda" id="busquedaValue" type="text" class="form-control" placeholder="Buscar restaurante...">
-                            <input type="text" id="busquedaParam" name="param" hidden>
-                            <span class="input-group-btn">
-                                <button class="btn btn-info" type="submit" >Buscar</button>
-                            </span>
-                        </div>
-                    </form>
->>>>>>> e77a446b34d62e384e1392184dd72824bbddfbb2
-                </div>
+                    </div>
+                </form>
             </div>
             <div class="col-md-3"></div>
         </div>
 
-<<<<<<< HEAD
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
                 <ul class="pagination">
+                    {% if paginas.length > 0 %}
                     <li class="page-item pr-3" id="pi-{{ pagina}}">
-                        <a class="page-link" href="/home?pg=1"> &#60;&#60; </a>
+                        <a class="page-link" href="/home?pg=1&#38;busqueda={{busquedaValor}}&#38;param={{paramValor}}&#38;reset=1"> &#60;&#60; </a>
                     </li>
-                    {% for pagina in paginas %}
+                    {% endif %} {% for pagina in paginas %}
                     <li class="page-item" id="pi-{{ pagina}}">
-                        <a class="page-link" href="/home?pg={{ pagina }}">{{ pagina }}</a>
+                        <a class="page-link" href="/home?pg={{ pagina }}&#38;busqueda={{busquedaValor}}&#38;param={{paramValor}}&#38;reset=1">{{ pagina }}</a>
                     </li>
-                    {% endfor %}
+                    {% endfor %} {% if paginas.length > 0 %}
                     <li class="page-item mx-3" id="pi-{{ pagina}}">
-                        <a class="page-link" href="/home?pg={{paginas.length}}"> &#62;&#62; </a>
+                        <a class="page-link" href="/home?pg={{paginas.length}}&#38;busqueda={{busquedaValor}}&#38;param={{paramValor}}&#38;reset=1"> &#62;&#62; </a>
                     </li>
+                    {% else %}
+                    <div class="alert alert-info">
+                        <strong>¡Vaya!</strong> No hemos encontrado restaurantes
+                    </div>
+                    {% endif %}
                     <script>
                         $("#pi-{{ pag}}").addClass("active");
                     </script>
                 </ul>
-=======
-            <div class="row">
-                <div class="col-md-3"></div>
-                <div class="col-md-6">
-                    <ul class="pagination">
-                        {% if paginas.length > 0 %}
-                        <li class="page-item pr-3" id="pi-{{ pagina}}">
-                            <a class="page-link" href="/home?pg=1" > &#60;&#60; </a>
-                        </li>
-                        {% endif %}
-                        {% for pagina in paginas %}
-                        <li class="page-item" id="pi-{{ pagina}}">
-                            <a class="page-link" href="/home?pg={{ pagina }}&#38;busqueda={{busquedaValor}}&#38;param={{paramValor}}&#38;reset=1" >{{ pagina }}</a>
-                        </li>
-                        {% endfor %}
-                        {% if paginas.length > 0 %}
-                        <li class="page-item mx-3" id="pi-{{ pagina}}">
-                            <a class="page-link" href="/home?pg={{paginas.length}}" > &#62;&#62; </a>
-                        </li>
-                        {% else %}
-                        <div class="alert alert-info">
-                            <strong>¡Vaya!</strong> No hemos encontrado restaurantes
-                        </div>    
-                        {% endif %}
-                        <script>
-                            $( "#pi-{{ pag}}" ).addClass("active");
-                        </script>
-                    </ul>
-                </div>
-                <div class="col-md-3"></div>
->>>>>>> e77a446b34d62e384e1392184dd72824bbddfbb2
             </div>
             <div class="col-md-3"></div>
         </div>
@@ -135,7 +81,7 @@
                                 </div>
                             </div>
                             <div class="col-md-1">
-                                <a class="menuLink" href="/p/pedido/{{restaurante._id.toString()}}">¡Pedir!</a>
+                                <a class="menuLink" href="#">¡Pedir!</a>
                             </div>
                         </div>
                     </div>
@@ -145,11 +91,7 @@
             <div class="col-md-1"></div>
         </div>
     </div>
-<<<<<<< HEAD
 </div>
-=======
-{% endblock %}
-{% block script_adicional %}
+{% endblock %} {% block script_adicional %}
 <script src="../scripts/searchDropdown.js"></script>
->>>>>>> e77a446b34d62e384e1392184dd72824bbddfbb2
 {% endblock %}
