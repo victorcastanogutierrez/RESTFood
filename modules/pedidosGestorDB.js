@@ -32,7 +32,7 @@ class PedidoGestorDB extends DBConnector {
                         let pedidoFinal = {
                             precio: precio,
                             restaurante: restaurante.nombre,
-                            pedido: pedido.propietario,
+                            propietario: pedido.propietario,
                             productos: productosPedidos,
                             hora: pedido.hora
                         }
@@ -48,6 +48,26 @@ class PedidoGestorDB extends DBConnector {
                     }
                 });
             }
+        });
+    }
+
+    listarPedidos(criterio, successCallback, errorCallback) {
+        this.getConnection((err, db) => {
+            if (err) {
+                if (errorCallback) {
+                    errorCallback(err);
+                }
+            }
+            let collection = db.collection('pedidos');
+            collection.find(criterio).toArray(function(err, pedidos) {
+                if (err) {
+                    errorCallback(null);
+                } else {
+                    pedidos.map(x => x.hora = new Date(x.hora));
+                    successCallback(pedidos);
+                }
+                db.close();
+            });
         });
     }
 }

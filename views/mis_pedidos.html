@@ -6,19 +6,19 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th class="col-md-1">Nombre</th>
-                            <th>Tipo</th>
-                            <th>Modificar</th>
-                            <th>Borrar</th>
+                            <th class="col-md-1">Restaurante</th>
+                            <th>Precio</th>
+                            <th>Fecha</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for restaurante in restaurantes %}
+                        {% for pedido in pedidos %}
                         <tr>
-                            <td>{{ restaurante.nombre }}</td>
-                            <td>{{ restaurante.tipo }}</td>
-                            <td> <a href="">Modificar menu</a> </td>
-                            <td> <a href="/p/restaurante/eliminar/{{restaurante._id.toString()}}">Borrar restaurante</a> </td>
+                            <td>{{ pedido.restaurante }}</td>
+                            <td>{{ pedido.precio }}</td>
+                            <td>{{pedido.hora.getFullYear()}} - {{pedido.hora.getMonth()}} - {{pedido.hora.getDay()}}</td>
+                            <th><button type="button" class="btn btn-info">Valorar</button></th>
                         </tr>
                         {% endfor %}
                     </tbody>

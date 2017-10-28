@@ -74,17 +74,6 @@ module.exports = function(app, swig, gestorDBUsuarios) {
             );
         }
     });
-
-    app.get("/p/mispedidos", function(req, res) {
-        let criterio = {
-            propietario: req.session.usuario
-        };
-        restauranteGestorDB.listarRestaurantes(criterio, (restaurantes) => {
-            var respuesta = swig.renderFile('views/mis_restaurantes.html', { restaurantes: restaurantes });
-            res.send(respuesta);
-        })
-
-    });
 };
 
 function existeUsuario(gestorDBUsuarios, email, existe, noExiste) {

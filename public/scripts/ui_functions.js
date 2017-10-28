@@ -43,11 +43,10 @@ function hacerPedido() {
         $.ajax({
                 type: "POST",
                 url: "/p/pedido",
-                data: pedido,
-                dataType: "application/json"
+                data: pedido
             })
             .done(response => {
-                console.log("BIEN");
+                document.getElementById("misPedidos").click();
             })
             .fail(response => {
                 console.log(response);

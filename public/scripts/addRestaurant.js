@@ -116,7 +116,7 @@ function confirm() {
     data: currentRestaurant
     })
     .done(response => {
-        document.getElementById("misRestaurantes").click()
+        document.getElementById("misRestaurantes").click();
     })
     .fail(response => {
 

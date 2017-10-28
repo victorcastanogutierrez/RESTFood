@@ -18,11 +18,17 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB, pedi
         pedido.propietario = req.session.usuario;
 
         pedidosGestorDB.insertarPedido(pedido, () => {
-            res.redirect("/home");
+            res.sendStatus(200);
         })
-
-
     });
-
-
+    
+    app.get("/p/mispedidos", function(req, res) {
+        let criterio = {
+            propietario: req.session.usuario
+        };
+        pedidosGestorDB.listarPedidos(criterio, (pedidos) => {
+            var respuesta = swig.renderFile('views/mis_pedidos.html', { pedidos: pedidos });
+            res.send(respuesta);
+        })
+    });
 };
