@@ -28,8 +28,6 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB) {
 
     });
 
-
-
     app.post("/p/restaurante", function(req, res) {
         let restaurante = req.body;
         restaurante.propietario = req.session.usuario;
@@ -55,7 +53,12 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB) {
         const busqueda = req.query.busqueda;
         const param = req.query.param;
         if (busqueda && param) {
-            pg = 1;
+            // En caso de que la búsqueda sea al darle al botón buscar
+            // automáticamente pasa a 1. En caso de que esté paginando
+            // con una búsqueda ya realizada, no le devolvemos a la página 1
+            if (!req.query.reset) {
+                pg = 1;
+            }
             criterios = {};
             criterios[param] = busqueda;
         }
@@ -79,8 +82,8 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB) {
                 restaurantes : result,
                 pag : pg,
                 paginas : paginas,
-                busqueda : busqueda,
-                param: param
+                busquedaValor : busqueda,
+                paramValor: param
             };
 
             var respuesta = swig.renderFile('views/vista_home.html', resp);

@@ -35,17 +35,25 @@
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
                     <ul class="pagination">
+                        {% if paginas.length > 0 %}
                         <li class="page-item pr-3" id="pi-{{ pagina}}">
                             <a class="page-link" href="/home?pg=1" > &#60;&#60; </a>
                         </li>
+                        {% endif %}
                         {% for pagina in paginas %}
                         <li class="page-item" id="pi-{{ pagina}}">
-                            <a class="page-link" href="/home?pg={{ pagina }}" >{{ pagina }}</a>
+                            <a class="page-link" href="/home?pg={{ pagina }}&#38;busqueda={{busquedaValor}}&#38;param={{paramValor}}&#38;reset=1" >{{ pagina }}</a>
                         </li>
                         {% endfor %}
+                        {% if paginas.length > 0 %}
                         <li class="page-item mx-3" id="pi-{{ pagina}}">
                             <a class="page-link" href="/home?pg={{paginas.length}}" > &#62;&#62; </a>
                         </li>
+                        {% else %}
+                        <div class="alert alert-info">
+                            <strong>¡Vaya!</strong> No hemos encontrado restaurantes
+                        </div>    
+                        {% endif %}
                         <script>
                             $( "#pi-{{ pag}}" ).addClass("active");
                         </script>

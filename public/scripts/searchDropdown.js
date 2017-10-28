@@ -23,4 +23,7 @@ $(document).ready(function () {
         $("#btBusqueda").html(selectedText);
         $("#busquedaParam").val(selectedValue);
     });
+
+    //Por defecto búsqueda por nombre
+    $(".dropdown-menu a[data-pdsa-dropdown-val='nombre'").click();
 });
