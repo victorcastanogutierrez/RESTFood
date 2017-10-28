@@ -51,6 +51,15 @@ app.use(function(err, req, res, next) {
     }
 });
 
+app.use(function (req, res, next) {
+    //CORS
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, data-type');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    next();
+});
+
 // lanzar el servidor
 app.listen(app.get('port'), function() {
     console.log("Servidor activo");

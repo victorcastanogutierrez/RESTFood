@@ -32,8 +32,8 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB) {
         let restaurante = req.body;
         restaurante.propietario = req.session.usuario;
         restauranteGestorDB.insertarRestaurante(restaurante, (id) => {
-            res.redirect("/views/vista_home.html");
-        })
+            res.redirect("/p/misrestaurantes");
+        }, err => res.sendStatus(400, {}));
     });
 
     app.get("/p/crearrestaurante", function(req, res) {
@@ -79,10 +79,10 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB) {
             }
 
             const resp = {
-                restaurantes : result,
-                pag : pg,
-                paginas : paginas,
-                busquedaValor : busqueda,
+                restaurantes: result,
+                pag: pg,
+                paginas: paginas,
+                busquedaValor: busqueda,
                 paramValor: param
             };
 
