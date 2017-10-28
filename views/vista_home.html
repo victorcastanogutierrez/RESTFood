@@ -5,25 +5,28 @@
                 <!-- Barra de búsqueda -->
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
-                    <div class="input-group">
-                        <div class="input-group-btn">
-                            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Buscar por
-                            </button>
-                            <div class="dropdown-menu">
-                                <h6 class="dropdown-header">Parámetro de búsqueda</h6>
-                                <a class="dropdown-item" selected="selected" href="#">Cebada 1</a>
-                                <a class="dropdown-item" href="#">Cebada 2</a>
-                                <a class="dropdown-item" href="#">Cebada 3</a>
-                                <div role="separator" class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Cebada separada 4</a>
-                            </div>
+                    <form action="/home" id="busquedaForm">
+                        <div class="input-group">
+                            <div class="input-group-btn">
+                                <button id="btBusqueda" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Buscar por
+                                </button>
+                                <div class="dropdown-menu">
+                                    <h6 class="dropdown-header">Parámetro de búsqueda</h6>
+                                    <a class="dropdown-item" href="#" data-pdsa-dropdown-val="nombre">Nombre</a>
+                                    <a class="dropdown-item" href="#" data-pdsa-dropdown-val="direccion">Dirección</a>
+                                    <a class="dropdown-item" href="#" data-pdsa-dropdown-val="web">Página web</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item busquedaTodos" href="/home">Buscar todos</a>
+                                </div>
+                            </div>   
+                            <input name="busqueda" id="busquedaValue" type="text" class="form-control" placeholder="Buscar restaurante...">
+                            <input type="text" id="busquedaParam" name="param" hidden>
+                            <span class="input-group-btn">
+                                <button class="btn btn-info" type="submit" >Buscar</button>
+                            </span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Buscar restaurante...">
-                        <span class="input-group-btn">
-                            <button class="btn btn-info" type="button">Buscar</button>
-                        </span>
-                    </div>
+                    </form>
                 </div>
                 <div class="col-md-3"></div>
             </div>
@@ -83,4 +86,7 @@
             </div>
         </div>
     </div>
+{% endblock %}
+{% block script_adicional %}
+<script src="../scripts/searchDropdown.js"></script>
 {% endblock %}

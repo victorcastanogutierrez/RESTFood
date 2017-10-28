@@ -24,7 +24,7 @@ class RestauranteGestorDB extends DBConnector {
         });
     }
 
-    buscarRestaurantes(pagina, successCallback, errorCallback) {
+    buscarRestaurantesPgCriterios(criterios, pagina, successCallback, errorCallback) {
         this.getConnection((err, db) => {
             if (err) {
                 if (errorCallback) {
@@ -32,15 +32,20 @@ class RestauranteGestorDB extends DBConnector {
                 }
             } else {
                 var collection = db.collection("restaurantes");
-                collection.count(function(err, count) {
-                    collection.find()
-                    .skip( (pagina-1)*4 ).limit( 4 ).toArray(function(err, result) {
+                collection.count(criterios, function(err, count) {
+                    let searchFunction = function(err, result) {
                         if (err) {
                             errorCallback(err);
                         } else {
                             successCallback(result, count);
                         }
-                    });
+                    };
+
+                    if (criterios != null) {
+                        collection.find(criterios).skip( (pagina-1)*4 ).limit( 4 ).toArray(searchFunction);
+                    } else {
+                        collection.find().skip( (pagina-1)*4 ).limit( 4 ).toArray(searchFunction);
+                    } 
                 });
             }
         });

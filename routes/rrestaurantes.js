@@ -21,11 +21,21 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB) {
         let restaurantes = [];
 
         var pg = parseInt(req.query.pg); // Es String !!!
-		if ( req.query.pg == null){ // Puede no venir el param
+		if ( req.query.pg == null) { // Puede no venir el param
 			pg = 1;
         }
 
-        restauranteGestorDB.buscarRestaurantes(pg, (result, num) => {
+        let criterios = null;
+        const busqueda = req.query.busqueda;
+        const param = req.query.param;
+        if (busqueda && param) {
+            pg = 1;
+            criterios = {};
+            criterios[param] = busqueda;
+        }
+        
+
+        restauranteGestorDB.buscarRestaurantesPgCriterios(criterios, pg, (result, num) => {
 
             let ultimaPg = num/4;
             if (num % 4 > 0 ){ // Sobran decimales
@@ -42,12 +52,14 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB) {
             const resp = {
                 restaurantes : result,
                 pag : pg,
-                paginas : paginas
+                paginas : paginas,
+                busqueda : busqueda,
+                param: param
             };
 
             var respuesta = swig.renderFile('views/vista_home.html', resp);
             res.send(respuesta);
-        }); 
+        });
 
     });
 
