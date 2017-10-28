@@ -8,6 +8,7 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB) {
 
     app.post("/p/restaurante", function(req, res) {
         let restaurante = req.body;
+        restaurante.propietario = req.session.usuario;
         restauranteGestorDB.insertarRestaurante(restaurante, (id) => {
             res.redirect("/views/vista_home.html");
         })
