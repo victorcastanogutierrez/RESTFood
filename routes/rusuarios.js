@@ -63,9 +63,7 @@ module.exports = function(app, swig, gestorDBUsuarios) {
                 () => {
                     res.send("el usuario ya existe");
                 },
-
-                () =>
-                gestorDBUsuarios.insertarUsuario(usuario, (id) => {
+                () => gestorDBUsuarios.insertarUsuario(usuario, (id) => {
                     if (id == null) {
                         res.send("error");
                     } else {
@@ -75,6 +73,17 @@ module.exports = function(app, swig, gestorDBUsuarios) {
                 })
             );
         }
+    });
+
+    app.get("/p/mispedidos", function(req, res) {
+        let criterio = {
+            propietario: req.session.usuario
+        };
+        restauranteGestorDB.listarRestaurantes(criterio, (restaurantes) => {
+            var respuesta = swig.renderFile('views/mis_restaurantes.html', { restaurantes: restaurantes });
+            res.send(respuesta);
+        })
+
     });
 };
 

@@ -17,7 +17,6 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB) {
 
     });
 
-
     app.get("/p/restaurante/eliminar/:id", function(req, res) {
         let criterio = {
             "_id": restauranteGestorDB.mongo.ObjectID(req.params.id)
