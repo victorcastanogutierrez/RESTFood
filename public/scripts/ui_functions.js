@@ -9,15 +9,10 @@ function assignChecks() {
     });
 }
 
-
 function addToMenu(element) {
-
-
-    console.log(element.checked);
     let precioconeur = element.value.split("-")[1] + "";
     let checked = element.checked;
-    let idPlato = element.id.replace("check", "");
-    console.log(idPlato);
+    let idPlato = Number(element.id.replace("check", ""));
 
     if (checked === true) {
         total += Number(precioconeur.substring(0, precioconeur.length - 1));
@@ -27,39 +22,35 @@ function addToMenu(element) {
         );
         $("#totalPedido").text(`Total :${total} €`);
         idsPedidos.push(idPlato);
-
     } else {
-
         total -= Number(precioconeur.substring(0, precioconeur.length - 1));
         $("#totalPedido").text(`Total :${total} €`);
-        console.log(`#sel${element.id}`);
         $(`#sel${element.id}`).remove();
-        let index = idsPedidos.findIndex(idPlato);
+        let index = idsPedidos.indexOf(idPlato);
         idsPedidos.splice(index, 1);
     }
+    console.log(idsPedidos);
 }
 
 function hacerPedido() {
+    if (idsPedidos.length > 0) {
+        let pedido = {
+            idRes: $("#hidden").text(),
+            idsPlatos: idsPedidos,
+            hora: new Date()
+        };
 
-    let pedido = {
-
-        idRes = $("#hidden").text(),
-        idsPlatos = idsPedidos,
-        date = new Date()
+        $.ajax({
+                type: "POST",
+                url: "/p/pedido",
+                data: pedido,
+                dataType: "application/json"
+            })
+            .done(response => {
+                console.log("BIEN");
+            })
+            .fail(response => {
+                console.log(response);
+            });
     }
-
-    $.ajax({
-            type: "POST",
-            url: "/p/pedido",
-            data: pedido,
-            dataType: "application/json"
-        })
-        .done(response => {
-            console.log("BIEN")
-        })
-        .fail(response => {
-            console.log(response);
-        });
-
-
 }
