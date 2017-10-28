@@ -38,15 +38,29 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB) {
         let restaurantes = [];
 
         var pg = parseInt(req.query.pg); // Es String !!!
-        if (req.query.pg == null) {
-            // Puede no venir el param
+        if (req.query.pg == null) { // Puede no venir el param
             pg = 1;
         }
 
-        restauranteGestorDB.buscarRestaurantes(pg, (result, num) => {
+        let criterios = null;
+        const busqueda = req.query.busqueda;
+        const param = req.query.param;
+        if (busqueda && param) {
+            // En caso de que la búsqueda sea al darle al botón buscar
+            // automáticamente pasa a 1. En caso de que esté paginando
+            // con una búsqueda ya realizada, no le devolvemos a la página 1
+            if (!req.query.reset) {
+                pg = 1;
+            }
+            criterios = {};
+            criterios[param] = busqueda;
+        }
+
+
+        restauranteGestorDB.buscarRestaurantesPgCriterios(criterios, pg, (result, num) => {
+
             let ultimaPg = num / 4;
-            if (num % 4 > 0) {
-                // Sobran decimales
+            if (num % 4 > 0) { // Sobran decimales
                 ultimaPg = ultimaPg + 1;
             }
 
@@ -60,11 +74,14 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB) {
             const resp = {
                 restaurantes: result,
                 pag: pg,
-                paginas: paginas
+                paginas: paginas,
+                busquedaValor: busqueda,
+                paramValor: param
             };
 
-            var respuesta = swig.renderFile("views/vista_home.html", resp);
+            var respuesta = swig.renderFile('views/vista_home.html', resp);
             res.send(respuesta);
         });
+
     });
 };
