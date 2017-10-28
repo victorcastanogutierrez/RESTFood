@@ -29,12 +29,11 @@ module.exports = function(app, swig, gestorDBUsuarios) {
                 req.session.usuario = user.email;
                 res.redirect("/home");
             } else {
-                //TODO contraseña incorrecta;
-                req.session.usuario = null;
+                loginError(res, req);
             }
 
         }, () => {
-            console.log("no existe")
+            loginError(res, req);
         });
 
 
@@ -88,4 +87,11 @@ function existeUsuario(gestorDBUsuarios, email, existe, noExiste) {
             existe(usuarios[0]);
         }
     });
+}
+
+function loginError(res, req) {
+    req.session.usuario = null;
+    res.redirect("/acceso" +
+        "?mensaje=Credenciales inválidas" +
+        "&tipoMensaje=alert-danger&login=1");
 }

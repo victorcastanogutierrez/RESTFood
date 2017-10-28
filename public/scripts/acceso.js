@@ -7,3 +7,13 @@ function swapCards() {
     template.removeClass("d-none");
     noTemplate.addClass("d-none");
 }
+
+/**
+ * Por defecto muestra la card de registro, salvo que se indique lo contrario en la URL
+ */
+$(document).ready(function () {
+    var login = getUrlParameter('login');
+    if (login) {
+        swapCards();
+    }
+});

@@ -9,6 +9,7 @@
             <div class="col-md-6" id="book">
                 <div class="card" id="regCard">
                     <div class="card-body p-5">
+                        <div class="errorContainer"></div>
                         <h3 class="pb-3">Registro</h3>
                         <form method="post" action="/usuario">
                             <div class="form-group"> <label>Nombre</label>
@@ -32,6 +33,7 @@
                 </div>
                 <div class="card d-none" id="loginCard">
                     <div class="card-body p-5">
+                        <div class="errorContainer"></div>
                         <h3 class="pb-3">Login</h3>
                         <form method="post" action="/login">
                             <div class="form-group"> <label>Correo electrónico</label>
@@ -54,5 +56,7 @@
     </div>
 </div>
 {% endblock %} {% block script_adicional %}
+<script src="scripts/ui_functions.js"></script>
 <script src="scripts/acceso.js"></script>
+<script src="scripts/alerts.js"></script>
 {% endblock %}
