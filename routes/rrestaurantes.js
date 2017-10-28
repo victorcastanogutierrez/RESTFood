@@ -1,30 +1,24 @@
 module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB) {
 
-    app.get("/pedido/:id", function(req, res) {
-        var respuesta = swig.renderFile('views/vista_restaurante.html', {});
-        res.send(respuesta);
-    });
-
     app.get("/p/misrestaurantes", function(req, res) {
-
         let criterio = {
             propietario: req.session.usuario
         };
-        restauranteGestorDB.listarRestaurantes(criterio, (restaurantes) => {
-            var respuesta = swig.renderFile('views/mis_restaurantes.html', { restaurantes: restaurantes });
+        restauranteGestorDB.listarRestaurantes(criterio, restaurantes => {
+            var respuesta = swig.renderFile("views/mis_restaurantes.html", {
+                restaurantes: restaurantes
+            });
             res.send(respuesta);
-        })
-
+        });
     });
 
     app.get("/p/restaurante/eliminar/:id", function(req, res) {
         let criterio = {
-            "_id": restauranteGestorDB.mongo.ObjectID(req.params.id)
-        }
-        restauranteGestorDB.borrarRestaurante(criterio, (response) => {
-            res.redirect("/p/misrestaurantes")
-        })
-
+            _id: restauranteGestorDB.mongo.ObjectID(req.params.id)
+        };
+        restauranteGestorDB.borrarRestaurante(criterio, response => {
+            res.redirect("/p/misrestaurantes");
+        });
     });
 
     app.post("/p/restaurante", function(req, res) {
@@ -36,7 +30,7 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB) {
     });
 
     app.get("/p/crearrestaurante", function(req, res) {
-        var respuesta = swig.renderFile('views/crear_restaurante.html', {});
+        var respuesta = swig.renderFile("views/crear_restaurante.html", {});
         res.send(respuesta);
     });
 
@@ -61,7 +55,7 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB) {
             criterios = {};
             criterios[param] = busqueda;
         }
-        
+
 
         restauranteGestorDB.buscarRestaurantesPgCriterios(criterios, pg, (result, num) => {
 
@@ -90,5 +84,4 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB) {
         });
 
     });
-
-}
+};
