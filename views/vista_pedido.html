@@ -3,29 +3,23 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <h1 class="">Casa Carmen</h1>
+                <h1 class="">{{restaurante.nombre}}</h1>
                 <br/>
+                <p hidden id="hidden">{{restaurante._id.toString()}}</p>
                 <table class="table">
                     <tbody>
+                        {% for plato in restaurante.menu %}
                         <tr>
-                            <td><input class="form-check-input" type="checkbox" id="check1" value="Escalopines"> </td>
-                            <td>Escalopines Al Cabrales</td>
-                            <td>23€</td>
+                            <td><input class="form-check-input" type="checkbox" id="check{{plato.id}}" value="{{plato.nombre}}-{{plato.precio}}€"> </td>
+                            <td>{{plato.nombre}}</td>
+                            <td>{{plato.precio}}€</td>
                         </tr>
-                        <tr>
-                            <td><input class="form-check-input" type="checkbox" id="check1" value="Cachopo"> </td>
-                            <td>Cachopo Vaqueiro con chosco de tineo</td>
-                            <td>700€</td>
-                        </tr>
-                        <tr>
-                            <td><input class="form-check-input" type="checkbox" id="check1" value="Filete"> </td>
-                            <td>Filete de Buey</td>
-                            <td>13€</td>
-                        </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>
             <div class="col-md-4">
+                <br/>
                 <br/>
                 <br/>
                 <div class="card">
@@ -34,8 +28,11 @@
                         <h4 class="center">Tú pedido</h4>
                         <p id="contenidoPedido" class="p-y-1">
                         </p>
+                        <div role="separator" class="dropdown-divider"></div>
+                        <p id="totalPedido">Total : 0€</p>
                         <button type="submit" class="btn btn-primary center">Pedir</button>
                     </div>
+
                 </div>
             </div>
         </div>

@@ -2,15 +2,6 @@ let menuPlates = [];
 let currentRestaurant;
 let counter = 0;
 
-function addToMenu(element) {
-    if (element.checked) {
-        $("#contenidoPedido").append(
-            ` <p class="pPedido" id="${element.value}">${element.value} </p>`
-        );
-    } else {
-        $(`#${element.value}`).remove();
-    }
-}
 
 function goToMakeMenu() {
     event.preventDefault();
@@ -57,7 +48,8 @@ function addToMenu() {
     `);
         let plate = {
             nombre: nombre,
-            precio: precio
+            precio: precio,
+            id: counter
         };
         menuPlates.push(plate);
         $("#nombreplato").val("");
