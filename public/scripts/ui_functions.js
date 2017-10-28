@@ -45,6 +45,7 @@ function hacerPedido() {
 
         idRes = $("#hidden").text(),
         idsPlatos = idsPedidos,
+        date = new Date()
     }
 
     $.ajax({

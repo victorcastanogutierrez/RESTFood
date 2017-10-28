@@ -9,4 +9,4 @@ class PedidoGestorDB extends DBConnector {
 
 }
 
-exports.RestauranteGestorDB = RestauranteGestorDB;
+exports.PedidoGestorDB = PedidoGestorDB;

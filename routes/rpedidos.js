@@ -14,7 +14,7 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB, pedi
     app.post("/p/pedido", function(req, res) {
 
         let pedido = req.body.pedido;
-        console.log(pedio);
+        console.log(pedido);
 
 
 
