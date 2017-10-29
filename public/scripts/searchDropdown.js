@@ -1,12 +1,20 @@
 $(document).ready(function () {
     var busqueda = getUrlParameter('busqueda');
     var param = getUrlParameter('param');
+    var nombreAv = getUrlParameter('nombreAvanzada');
+    var webAv = getUrlParameter('webAvanzada');
 
     if (busqueda && param) {
         const value = $("#busquedaForm .dropdown-menu a[data-pdsa-dropdown-val='"+param+"']").html();
         $("#btBusqueda").html(value);
         $("#busquedaValue").val(busqueda);
         $("#busquedaParam").val(param);
+    }
+
+    if (nombreAv && webAv) {
+        $("#nombreAv").val(nombreAv);
+        $("#webAv").val(webAv);
+        document.getElementById("linkAv").click();
     }
 
     $(".dropdown-menu a:not(.busquedaTodos)").on("click", function () {

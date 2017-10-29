@@ -38,24 +38,45 @@
             </div>
             <div class="col-md-3"></div>
         </div>
-
+        
+        <!-- Búsqueda avanzada -->
         <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <button type="button" class="btn btn-link px-0" data-toggle="collapse" href="#bAvanzada" aria-expanded="false" aria-controls="bAvanzada" id="linkAv">
+                    Búsqueda avanzada
+                </button>
+                <div class="collapse" id="bAvanzada">
+                    <form action="/home" method="get">
+                        <input id="nombreAv" type="text" class="form-control my-3" placeholder="Nombre del restaurante" aria-describedby="basic-addon1" name="nombreAvanzada" required>
+                        <div class="input-group  my-3">
+                            <span class="input-group-addon" id="basic-addon1">http://</span>
+                            <input id="webAv" type="text" class="form-control" placeholder="Página web del restaurante" aria-describedby="basic-addon1" name="webAvanzada" required>
+                        </div>
+                        <button class="btn btn-info" type="submit" >Buscar</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+
+        <div class="row my-5">
             <div class="col-md-3"></div>
             <div class="col-md-6">
                 <ul class="pagination">
                     {% if paginas.length > 0 %}
                     <li class="page-item pr-3" id="pi-{{ pagina}}">
-                        <a class="page-link" href="/home?pg=1&#38;busqueda={{busquedaValor}}&#38;param={{paramValor}}&#38;reset=1"> &#60;&#60; </a>
+                        <a class="page-link" href="/home?pg=1&#38;busqueda={{busquedaValor}}&#38;param={{paramValor}}&#38;nombreAvanzada={{nombreAv}}&#38;webAvanzada={{webAv}}&#38;reset=1"> &#60;&#60; </a>
                     </li>
                     {% endif %} 
                     {% for pagina in paginas %}
                     <li class="page-item" id="pi-{{ pagina}}">
-                        <a class="page-link" href="/home?pg={{ pagina }}&#38;busqueda={{busquedaValor}}&#38;param={{paramValor}}&#38;reset=1">{{ pagina }}</a>
+                        <a class="page-link" href="/home?pg={{ pagina }}&#38;busqueda={{busquedaValor}}&#38;param={{paramValor}}&#38;nombreAvanzada={{nombreAv}}&#38;webAvanzada={{webAv}}&#38;reset=1">{{ pagina }}</a>
                     </li>
                     {% endfor %} 
                     {% if paginas.length > 0 %}
                     <li class="page-item mx-3" id="pi-{{ pagina}}">
-                        <a class="page-link" href="/home?pg={{paginas[paginas.length-1]}}&#38;busqueda={{busquedaValor}}&#38;param={{paramValor}}&#38;reset=1"> &#62;&#62; </a>
+                        <a class="page-link" href="/home?pg={{paginas[paginas.length-1]}}&#38;busqueda={{busquedaValor}}&#38;param={{paramValor}}&#38;nombreAvanzada={{nombreAv}}&#38;webAvanzada={{webAv}}&#38;reset=1"> &#62;&#62; </a>
                     </li>
                     {% else %}
                     <div class="alert alert-info">

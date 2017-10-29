@@ -64,6 +64,8 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB) {
         let criterios = null;
         const busqueda = req.query.busqueda;
         const param = req.query.param;
+        const nombreAvanzado = req.query.nombreAvanzada;
+        const webAvanzado = req.query.webAvanzada;
         if (busqueda && param) {
             // En caso de que la búsqueda sea al darle al botón buscar
             // automáticamente pasa a 1. En caso de que esté paginando
@@ -73,8 +75,15 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB) {
             }
             criterios = {};
             criterios[param] = busqueda;
+        } else if (nombreAvanzado && webAvanzado) { // Si no es búsqueda simple puede ser avanzada
+            criterios = {
+                "$or": [{
+                    "nombre": nombreAvanzado
+                }, {
+                    "web": webAvanzado
+                }]
+            }
         }
-
 
         restauranteGestorDB.buscarRestaurantesPgCriterios(criterios, (result, num) => {
 
@@ -97,9 +106,11 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB) {
                 paginas: paginas,
                 busquedaValor: busqueda,
                 paramValor: param,
-                logged: logged
+                logged: logged,
+                nombreAv: nombreAvanzado,
+                webAv: webAvanzado
             };
-
+            
             var respuesta = swig.renderFile('views/vista_home.html', resp);
             res.send(respuesta);
         }, () => {
