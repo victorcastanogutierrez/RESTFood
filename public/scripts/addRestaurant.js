@@ -33,7 +33,11 @@ function goToMakeMenu() {
     ) {
         currentRestaurant = restaurant;
         $("#infoGeneral").css("display", "none");
+        $("#alertDiv").css("display", "none");
         $("#menu").css("display", "flex");
+    } else {
+        $("#alertDiv").css("display", "block");
+        $("#alertDiv").text("Por favor, rellene todos los campos del formulario")
     }
 }
 
@@ -54,6 +58,7 @@ function addToMenu() {
         menuPlates.push(plate);
         $("#nombreplato").val("");
         $("#precioplato").val("");
+        $("#alertDiv").css("display", "none");
         counter++;
     }
 }
@@ -75,7 +80,11 @@ function siguienteAConfirmar() {
         $("#menu").css("display", "none");
         $("#confirmRestaurant").css("display", "flex");
         currentRestaurant.menu = menuPlates;
+        $("#alertDiv").css("display", "none");
         fillInfoRestaurant(currentRestaurant);
+    } else {
+        $("#alertDiv").css("display", "block");
+        $("#alertDiv").text("Añada al menos un plato");
     }
 }
 
@@ -111,14 +120,14 @@ function atrasAMenu() {
 
 function confirm() {
     $.ajax({
-    type: "POST",
-    url: "/p/restaurante",
-    data: currentRestaurant
-    })
-    .done(response => {
-        document.getElementById("misRestaurantes").click();
-    })
-    .fail(response => {
+            type: "POST",
+            url: "/p/restaurante",
+            data: currentRestaurant
+        })
+        .done(response => {
+            document.getElementById("misRestaurantes").click();
+        })
+        .fail(response => {
 
-    });
+        });
 }
