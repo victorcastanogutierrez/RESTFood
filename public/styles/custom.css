@@ -91,3 +91,21 @@ table {
     padding-left: 10%;
     padding-right: 10%;
 }
+
+.centered {
+    display: flex;
+    justify-content: center;
+}
+
+.shadow {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.card p {
+    color: rgb(82, 82, 82);
+}
+
+.card {
+    text-align: center;
+    margin-top: 10%;
+}

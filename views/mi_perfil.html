@@ -1,0 +1,13 @@
+{% block extra_nav %} {% include "./private_nav.html" %} {% endblock %} {% extends "base.html" %} {% block contenido_principal %}
+<div id="user" class="centered">
+    <div class="card shadow" style="width: 20rem;">
+        <img class="card-img-top" src="http://madrid-barcelona.com/wp-content/uploads/2013/05/29/51a611a96901d.jpg" alt="Card image cap">
+        <div class="card-block">
+            <h4 class="card-title">Mi perfil</h4>
+            <p>
+                Nombre: {{user.name}} <br/> Email : {{user.email}}
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
