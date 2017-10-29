@@ -4,7 +4,7 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB, pedi
             _id: restauranteGestorDB.mongo.ObjectID(req.params.id)
         };
 
-        restauranteGestorDB.listarRestaurantes(criterio, restaurantes => {
+        restauranteGestorDB.buscarRestaurantesPgCriterios(criterio, restaurantes => {
             var respuesta = swig.renderFile("views/vista_pedido.html", { restaurante: restaurantes[0] });
             res.send(respuesta);
         });
@@ -21,7 +21,7 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB, pedi
             res.sendStatus(200);
         })
     });
-    
+
     app.get("/p/mispedidos", function(req, res) {
         let criterio = {
             propietario: req.session.usuario
