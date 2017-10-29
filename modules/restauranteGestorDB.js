@@ -94,9 +94,9 @@ class RestauranteGestorDB extends DBConnector {
                         collection.find(criterios).toArray(searchFunction);
                     } else {
                         if (criterios != null) {
-                            collection.find(criterios).skip((pagina - 1) * 4).limit(4).toArray(searchFunction);
+                            collection.find(criterios).sort({nombre: 1}).skip((pagina - 1) * 4).limit(4).toArray(searchFunction);
                         } else {
-                            collection.find().skip((pagina - 1) * 4).limit(4).toArray(searchFunction);
+                            collection.find().sort({nombre: 1}).skip((pagina - 1) * 4).limit(4).toArray(searchFunction);
                         }
                     }
                 });
