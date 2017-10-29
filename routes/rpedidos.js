@@ -58,4 +58,20 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB, pedi
             }
         });
     });
+
+    app.get("/p/misvaloraciones", function(req, res) {
+        let criterio = {
+            propietario: req.session.usuario
+        };
+        pedidosGestorDB.findAll('pedidos', criterio, (pedidos) => {
+            let valoraciones = [];
+            const pedidosSend = pedidos.filter(x => x.valoracion);
+            const sinValorar = pedidos.length - pedidosSend.length;
+            var respuesta = swig.renderFile('views/mis_valoraciones.html', { 
+                pedidos: pedidosSend,
+                sinValorar: sinValorar 
+            });
+            res.send(respuesta);
+        });
+    });
 };
