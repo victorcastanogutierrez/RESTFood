@@ -1,11 +1,8 @@
-{% block extra_nav %}
-    {% include "./private_nav.html" %}
-{% endblock %}
-
-{% extends "base.html" %} {% block contenido_principal %}
+{% block extra_nav %} {% include "./private_nav.html" %} {% endblock %} {% extends "base.html" %} {% block contenido_principal %}
 <div class="py-5">
     <div class="container">
         <div class="row">
+            <div id="alertDiv" class="alert alert-danger"></div>
             <div id="infoGeneral" class="col-md-12">
                 <h1 class="">Crear Restaurante</h1>
                 <form class="" method="post" action="/p/restaurante">

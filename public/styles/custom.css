@@ -79,4 +79,8 @@ table {
     white-space: nowrap;
 }
 
+#alertDiv {
+    display: none;
+}
+
 #addContact {}

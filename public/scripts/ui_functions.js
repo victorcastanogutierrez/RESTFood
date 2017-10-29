@@ -7,7 +7,7 @@ function getUrlParameter(name) {
     name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
     var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
     var results = regex.exec(location.search);
-    return results === null ? '' : 
+    return results === null ? '' :
         decodeURIComponent(results[1].replace(/\+/g, ' '));
 };
 
@@ -59,5 +59,8 @@ function hacerPedido() {
             .fail(response => {
                 console.log(response);
             });
+    } else {
+        $("#alertDiv").css("display", "block");
+        $("#alertDiv").text("Por favor, seleccione al menos un plato");
     }
 }
