@@ -1,3 +1,7 @@
+{% block extra_nav %}
+    {% include "./private_nav.html" %}
+{% endblock %}
+
 {% extends "base.html" %} {% block contenido_principal %}
 <div class="py-5">
     <div class="container">
@@ -22,12 +26,12 @@
                         <label>Tipo</label>
                         <br/>
                         <select id="tipoRes" class="selectpicker">
-                                <option class="dropdown-item" value="mexicano">Restaurante Mexicano</option>
-                                <option class="dropdown-item" value="esnpanol">Restaurante Español</option>
-                                <option class="dropdown-item" value="turco">Restaurante Turco</option>
-                                <option class="dropdown-item" value="americano">Restaurante Americano</option>
-                                <option class="dropdown-item" value="indio">Restaurante Indio</option>
-                                <option class="dropdown-item" value="japones">Restaurante Japones</option>
+                            <option class="dropdown-item" value="mexicano">Restaurante Mexicano</option>
+                            <option class="dropdown-item" value="esnpanol">Restaurante Español</option>
+                            <option class="dropdown-item" value="turco">Restaurante Turco</option>
+                            <option class="dropdown-item" value="americano">Restaurante Americano</option>
+                            <option class="dropdown-item" value="indio">Restaurante Indio</option>
+                            <option class="dropdown-item" value="japones">Restaurante Japones</option>
                         </select>
                     </div>
                     <button onclick="goToMakeMenu()" class="btn btn-primary">Siguiente</button>

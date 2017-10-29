@@ -1,4 +1,10 @@
-{% extends "base.html" %} {% block contenido_principal %}
+{% extends "base.html" %}
+
+{% block extra_nav %}
+    {% include "./public_nav.html" %}
+{% endblock %}
+
+{% block contenido_principal %}
 <div class="bgImage py-5">
     <div class="container">
         <div class="row">

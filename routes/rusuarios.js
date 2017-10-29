@@ -2,7 +2,7 @@ module.exports = function(app, swig, gestorDBUsuarios) {
 
     app.get("/logout", function(req, res) {
         req.session.usuario = null;
-        res.redirect("/acceso");
+        res.redirect("/acceso?login=1");
     });
 
     app.get("/acceso", function(req, res) {
@@ -25,18 +25,14 @@ module.exports = function(app, swig, gestorDBUsuarios) {
 
         existeUsuario(gestorDBUsuarios, email, (user) => {
             if (user.password === seguro) {
-                console.log("Entra " + user.email);
                 req.session.usuario = user.email;
                 res.redirect("/home");
             } else {
                 loginError(res, req);
             }
-
         }, () => {
             loginError(res, req);
         });
-
-
     });
 
     app.post("/usuario", function(req, res) {

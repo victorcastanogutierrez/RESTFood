@@ -71,12 +71,14 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB) {
                 }
             }
 
+            const logged = !(req.session.usuario);
             const resp = {
                 restaurantes: result,
                 pag: pg,
                 paginas: paginas,
                 busquedaValor: busqueda,
-                paramValor: param
+                paramValor: param,
+                logged: logged
             };
 
             var respuesta = swig.renderFile('views/vista_home.html', resp);
