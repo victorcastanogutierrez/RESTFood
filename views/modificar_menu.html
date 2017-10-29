@@ -1,24 +1,26 @@
 {% block extra_nav %} {% include "./private_nav.html" %} {% endblock %} {% extends "base.html" %} {% block contenido_principal %}
-<div id="restaurante" class="py-5">
+<div id="pedido" class="py-5">
     <div class="container">
         <div class="row">
             <div class="table-responsive">
+                <h1>{{restaurante.nombre}}</h1>
+                <p>Modificar Menu</p>
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th class="col-md-1">Nombre</th>
-                            <th>Tipo</th>
+                            <th class="col-md-1">Plato</th>
+                            <th>Precio</th>
                             <th>Modificar</th>
                             <th>Borrar</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for restaurante in restaurantes %}
+                        {% for plato in restaurante.menu %}
                         <tr>
-                            <td>{{ restaurante.nombre }}</td>
-                            <td>{{ restaurante.tipo }}</td>
-                            <td> <a href="/p/restaurante/modificar/{{restaurante._id.toString()}}">Modificar menu</a> </td>
-                            <td> <a href="/p/restaurante/eliminar/{{restaurante._id.toString()}}">Borrar restaurante</a> </td>
+                            <td>{{ plato.nombre }}</td>
+                            <td>{{ plato.precio }}</td>
+                            <td>{{ modificar }}</td>
+                            <td>{{ borrar }}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -28,5 +30,5 @@
     </div>
 </div>
 {% endblock %} {% block script_adicional %}
-<script src="/scripts/ui_functions.js "></script>
+<script src="/scripts/modificar_menu.js"></script>
 {% endblock %}
