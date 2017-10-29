@@ -1,3 +1,7 @@
+//Constantes
+const usuarioEmail = "Cambiame";
+const passwordEmail = "Cambiame";
+
 //Requires
 var express = require("express");
 var app = express();
@@ -6,6 +10,7 @@ var mongo = require("mongodb");
 var swig = require("swig");
 var bodyParser = require("body-parser");
 var crypto = require("crypto");
+var nodemailer = require('nodemailer');
 
 //DB
 app.set("port", 8081);
@@ -16,6 +21,7 @@ var { RestauranteGestorDB } = require("./modules/restauranteGestorDB.js");
 const restauranteGestorDB = new RestauranteGestorDB(app, mongo);
 var { PedidoGestorDB } = require("./modules/pedidosGestorDB.js");
 const pedidoGestorDB = new PedidoGestorDB(app, mongo);
+var { GestorMail } = require("./modules/gestorMail.js");
 
 app.use(
     expressSession({
@@ -41,7 +47,18 @@ require("./routes/rrestaurantes.js")(
     userGestorDB,
     restauranteGestorDB
 );
-require("./routes/rpedidos.js")(app, swig, userGestorDB, restauranteGestorDB, pedidoGestorDB, mongo.ObjectID);
+
+//Mailvars
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: usuarioEmail,
+        pass: passwordEmail
+    }
+});
+const gestor = new GestorMail(transporter);
+
+require("./routes/rpedidos.js")(app, swig, userGestorDB, restauranteGestorDB, pedidoGestorDB, mongo.ObjectID, gestor);
 
 //Variables
 app.set("clave", "supersegura");
