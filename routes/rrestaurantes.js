@@ -76,6 +76,9 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB) {
             criterios = {};
             criterios[param] = busqueda;
         } else if (nombreAvanzado && webAvanzado) { // Si no es búsqueda simple puede ser avanzada
+            if (!req.query.reset) {
+                pg = 1;
+            }
             criterios = {
                 "$or": [{
                     "nombre": nombreAvanzado
