@@ -45,7 +45,7 @@ class RestauranteGestorDB extends DBConnector {
 
     }
 
-    buscarRestaurantesPgCriterios(criterios, pagina, successCallback, errorCallback) {
+    buscarRestaurantesPgCriterios(criterios, successCallback, errorCallback, pagina) {
         this.getConnection((err, db) => {
             if (err) {
                 if (errorCallback) {
@@ -62,11 +62,15 @@ class RestauranteGestorDB extends DBConnector {
                         }
                     };
 
-                    if (criterios != null) {
-                        collection.find(criterios).skip( (pagina-1)*4 ).limit( 4 ).toArray(searchFunction);
+                    if (!pagina) {
+                        collection.find(criterios).toArray(searchFunction);
                     } else {
-                        collection.find().skip( (pagina-1)*4 ).limit( 4 ).toArray(searchFunction);
-                    } 
+                        if (criterios != null) {
+                            collection.find(criterios).skip( (pagina-1)*4 ).limit( 4 ).toArray(searchFunction);
+                        } else {
+                            collection.find().skip( (pagina-1)*4 ).limit( 4 ).toArray(searchFunction);
+                        } 
+                    }
                 });
             }
         });

@@ -57,7 +57,7 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB) {
         }
 
 
-        restauranteGestorDB.buscarRestaurantesPgCriterios(criterios, pg, (result, num) => {
+        restauranteGestorDB.buscarRestaurantesPgCriterios(criterios, (result, num) => {
 
             let ultimaPg = num / 4;
             if (num % 4 > 0) { // Sobran decimales
@@ -83,7 +83,10 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB) {
 
             var respuesta = swig.renderFile('views/vista_home.html', resp);
             res.send(respuesta);
-        });
+        }, () => {
+            //TODO mensajes error
+            console.log("error");
+        } , pg);
 
     });
 };
