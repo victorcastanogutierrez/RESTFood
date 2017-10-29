@@ -21,6 +21,16 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB) {
         });
     });
 
+    app.get("/p/restaurante/modificar/:id", function(req, res) {
+        let criterio = {
+            _id: restauranteGestorDB.mongo.ObjectID(req.params.id)
+        };
+        restauranteGestorDB.buscarRestaurantesPgCriterios(criterio, restaurantes => {
+            var respuesta = swig.renderFile("views/modificar_menu.html", { restaurante: restaurantes[0] });
+            res.send(respuesta);
+        });
+    });
+
     app.post("/p/restaurante", function(req, res) {
         let restaurante = req.body;
         restaurante.propietario = req.session.usuario;
@@ -28,6 +38,15 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB) {
             res.redirect("/p/misrestaurantes");
         }, err => res.sendStatus(400, {}));
     });
+
+    app.post("/p/modifyrestaurant", function(req, res) {
+        let restaurante = req.body;
+        restauranteGestorDB.modificarRestaurante(restaurante, (id) => {
+            res.redirect("/p/misrestaurantes");
+        }, err => res.sendStatus(400, {}));
+    });
+
+
 
     app.get("/p/crearrestaurante", function(req, res) {
         var respuesta = swig.renderFile("views/crear_restaurante.html", {});
@@ -86,7 +105,7 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB) {
         }, () => {
             //TODO mensajes error
             console.log("error");
-        } , pg);
+        }, pg);
 
     });
 };

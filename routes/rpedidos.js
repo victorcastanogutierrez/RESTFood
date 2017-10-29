@@ -21,7 +21,7 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB, pedi
             res.sendStatus(200);
         })
     });
-    
+
     app.get("/p/mispedidos", function(req, res) {
         let criterio = {
             propietario: req.session.usuario

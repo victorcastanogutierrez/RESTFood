@@ -1,10 +1,4 @@
-{% extends "base.html" %}
-
-{% block extra_nav %}
-    {% include "./public_nav.html" %}
-{% endblock %}
-
-{% block contenido_principal %}
+{% extends "base.html" %} {% block extra_nav %} {% include "./public_nav.html" %} {% endblock %} {% block contenido_principal %}
 <div class="bgImage py-5">
     <div class="container">
         <div class="row">
@@ -61,7 +55,6 @@
         </div>
     </div>
 </div>
-
 {% endblock %} {% block script_adicional %}
 <script src="scripts/ui_functions.js"></script>
 <script src="scripts/acceso.js"></script>
