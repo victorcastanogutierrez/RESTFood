@@ -38,7 +38,39 @@ table {
 }
 
 .main {
-    background: #FB3640;
+    background: #316D4A;
+}
+
+.page-link {
+    color: #316D4A;
+}
+
+.btn-info:disabled {
+    background: rgb(67, 151, 102);
+    border-color: rgb(46, 104, 70);
+}
+
+.btn-primary {
+    background: #316D4A;
+    border-color: rgb(46, 104, 70);
+}
+
+.page-item:active {
+    background: #316D4A;
+    border-color: rgb(46, 104, 70);
+}
+
+.btn-link {
+    color: #316D4A;
+}
+
+.btn-link:hover {
+    color: rgb(26, 59, 40);
+}
+
+.btn-info {
+    background: #EEA74B;
+    border-color: rgb(228, 158, 72);
 }
 
 .colorwhite {
@@ -108,4 +140,32 @@ table {
 .customcard {
     text-align: center;
     margin-top: 10%;
+}
+
+a {
+    color: #316D4A;
+}
+
+a:hover {
+    color: rgb(26, 59, 40);
+}
+
+.white {
+    color: white!important;
+}
+
+.btn-outline-dark:hover {
+    background: #316D4A;
+    color: white;
+    border-color: rgb(26, 59, 40);
+}
+
+.page-item.active .page-link {
+    background: #316D4A;
+    color: white;
+    border-color: rgb(26, 59, 40);
+}
+
+.page-link:hover {
+    color: rgb(26, 59, 40);
 }
