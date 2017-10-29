@@ -50,6 +50,21 @@ class PedidoGestorDB extends DBConnector {
             }
         });
     }
+
+    updatePedido(criterios, pedido, successCallback, errCallback) {
+        this.getConnection((err, db) => {
+            if (err) {
+                if (errCallback) {
+                    errCallback(err);
+                }
+            } else {
+                let pedidos = db.collection("pedidos");
+                pedidos.update(criterios, pedido, (err, result) => {
+                    successCallback();
+                });
+            }
+        });
+    }
 }
 
 exports.PedidoGestorDB = PedidoGestorDB;

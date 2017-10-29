@@ -41,7 +41,7 @@ require("./routes/rrestaurantes.js")(
     userGestorDB,
     restauranteGestorDB
 );
-require("./routes/rpedidos.js")(app, swig, userGestorDB, restauranteGestorDB, pedidoGestorDB);
+require("./routes/rpedidos.js")(app, swig, userGestorDB, restauranteGestorDB, pedidoGestorDB, mongo.ObjectID);
 
 //Variables
 app.set("clave", "supersegura");

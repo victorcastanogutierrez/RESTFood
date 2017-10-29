@@ -6,6 +6,7 @@
 <div id="pedido" class="py-5">
     <div class="container">
         <div class="row">
+            <div class="infoContainer"></div>
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
@@ -18,12 +19,19 @@
                     </thead>
                     <tbody>
                         {% for pedido in pedidos %}
-                        <tr>
-                            <td>{{ pedido.restaurante }}</td>
-                            <td>{{ pedido.precio }}</td>
-                            <td>{{pedido.hora.getFullYear()}} - {{pedido.hora.getMonth()}} - {{pedido.hora.getDay()}}</td>
-                            <th><button type="button" class="btn btn-info">Valorar</button></th>
-                        </tr>
+                        <div>
+                            <tr>
+                                <td hidden><input type="text" value="{{pedido._id.toString()}}"></td>
+                                <td>{{ pedido.restaurante }}</td>
+                                <td>{{ pedido.precio }}</td>
+                                <td>{{pedido.hora.getFullYear()}} - {{pedido.hora.getMonth()}} - {{pedido.hora.getDay()}}</td>
+                                {% if pedido.valoracion != null %}
+                                    <th><button type="button" class="btn btn-info" disabled>Valorado</button></th>
+                                {% else %}
+                                    <th><button type="button" class="btn btn-info addValoracion" data-toggle="modal" data-target="#valoracionModal">Valorar</button></th>
+                                {% endif %}
+                            </tr>
+                        </div>
                         {% endfor %}
                     </tbody>
                 </table>
@@ -31,3 +39,43 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="valoracionModal" tabindex="-1" role="dialog" aria-labelledby="valoracionModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="valoracionModalLabel">Valoración de restaurante</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/p/valorar" method="post">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="exampleSelect1">Valoración ({{opciones[0]}} - {{opciones[opciones.length-1]}})</label>
+                        <select class="form-control" id="valoracionNota" name="valoracionNota" required>
+                            {% for opcion in opciones %}
+                                <option value="{{opcion}}">{{opcion}}</option>
+                            {% endfor %}
+                        </select>
+                        <div class="form-group my-3">
+                            <label for="valoracionText">Justifique brevemente su valoración</label>
+                            <textarea name="valoracionDes" class="form-control" id="valoracionText" rows="3" required></textarea>
+                        </div>
+                        <input id="pedidoId" type="text" name="idPedido" hidden>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Valorar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block script_adicional %}
+<script src="../../scripts/ui_functions.js"></script>
+<script src="../../scripts/addValoracion.js"></script>
+<script src="../../scripts/alerts.js"></script>
+{% endblock %}
