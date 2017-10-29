@@ -34,9 +34,37 @@ class RestauranteGestorDB extends DBConnector {
                 collection.remove(criterio, function(err, result) {
                     if (err) {
                         errorCallback(null);
-                        u7
                     } else {
                         successCallback(result);
+                    }
+                    db.close();
+                });
+            }
+        });
+
+    }
+
+    modificarRestaurante(restauranteMod, successCallback, errorCallback) {
+        this.getConnection((err, db) => {
+            if (err) {
+                if (errorCallback) {
+                    errorCallback(err);
+                }
+            } else {
+                let criterio = { "_id": this.mongo.ObjectID(restauranteMod.id) }
+                let collection = db.collection('restaurantes');
+                collection.find(criterio).toArray(function(err, restaurantes) {
+                    if (err) {
+                        errorCallback(null);
+                    } else {
+                        let restaurante = restaurantes[0];
+                        restaurante.menu = restauranteMod.menu;
+                        collection.update(criterio, restaurante, (err, rest) => {
+                            if (err)
+                                errorCallback(null)
+                            else
+                                successCallback(rest);
+                        })
                     }
                     db.close();
                 });
@@ -66,10 +94,10 @@ class RestauranteGestorDB extends DBConnector {
                         collection.find(criterios).toArray(searchFunction);
                     } else {
                         if (criterios != null) {
-                            collection.find(criterios).skip( (pagina-1)*4 ).limit( 4 ).toArray(searchFunction);
+                            collection.find(criterios).skip((pagina - 1) * 4).limit(4).toArray(searchFunction);
                         } else {
-                            collection.find().skip( (pagina-1)*4 ).limit( 4 ).toArray(searchFunction);
-                        } 
+                            collection.find().skip((pagina - 1) * 4).limit(4).toArray(searchFunction);
+                        }
                     }
                 });
             }

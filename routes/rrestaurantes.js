@@ -39,6 +39,15 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB) {
         }, err => res.sendStatus(400, {}));
     });
 
+    app.post("/p/modifyrestaurant", function(req, res) {
+        let restaurante = req.body;
+        restauranteGestorDB.modificarRestaurante(restaurante, (id) => {
+            res.redirect("/p/misrestaurantes");
+        }, err => res.sendStatus(400, {}));
+    });
+
+
+
     app.get("/p/crearrestaurante", function(req, res) {
         var respuesta = swig.renderFile("views/crear_restaurante.html", {});
         res.send(respuesta);

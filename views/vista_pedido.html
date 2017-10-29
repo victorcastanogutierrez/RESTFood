@@ -1,8 +1,4 @@
-{% block extra_nav %}
-    {% include "./private_nav.html" %}
-{% endblock %}
-
-{% extends "base.html" %} {% block contenido_principal %}
+{% block extra_nav %} {% include "./private_nav.html" %} {% endblock %} {% extends "base.html" %} {% block contenido_principal %}
 <div id="restaurante" class="py-5">
     <div class="container">
         <div class="row">
@@ -15,7 +11,8 @@
                         {% for plato in restaurante.menu %}
                         <tr>
                             <td><input class="form-check-input" type="checkbox" id="check{{plato.id}}" value="{{plato.nombre}}-{{plato.precio}}€"> </td>
-                            <td>{{plato.nombre}}</td>
+                            <td>{{plato.nombre}} {% if plato.oferta == 'true' %}<span class="badge badge-warning">Oferta!</span> {% endif %}
+                            </td>
                             <td>{{plato.precio}}€</td>
                         </tr>
                         {% endfor %}
