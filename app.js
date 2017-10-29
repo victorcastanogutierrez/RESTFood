@@ -13,7 +13,7 @@ var crypto = require("crypto");
 var nodemailer = require('nodemailer');
 
 //DB
-app.set("port", 8081);
+app.set('port', process.env.PORT || 8081);
 app.set("db", "mongodb://admin:UDKbzgrue5Zp@ds163034.mlab.com:63034/restfood");
 var { UserGestorDB } = require("./modules/userGestorDB.js");
 const userGestorDB = new UserGestorDB(app, mongo);
