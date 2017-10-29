@@ -14,6 +14,21 @@ module.exports = function(app, swig, gestorDBUsuarios) {
         }
     });
 
+    app.get("/p/miperfil", function(req, res) {
+        let criterio = {
+            email: req.session.usuario
+        }
+        gestorDBUsuarios.obtenerUsuarios(criterio, (usuario) => {
+            usuario[0].password = null;
+
+            let respuesta = swig.renderFile("views/mi_perfil.html", { user: usuario[0] });
+            res.send(respuesta);
+        })
+
+
+    });
+
+
     app.post("/login", function(req, res) {
 
         const email = req.body.email;
