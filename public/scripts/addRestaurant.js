@@ -48,7 +48,7 @@ function addToMenu() {
 
     if (nombre !== "" && precio !== "") {
         $("#scrollable").append(`
-        <p id="plato${counter}">${nombre} - ${precio} <button class="btn btn-danger" id="btn_${counter}" onclick="deletePlato()"> borrar</button></p>  
+        <p id="plato${counter}">${nombre} - ${precio} <button class="btn btn-link px-0" id="btn_${counter}" onclick="deletePlato()"> Borrar plato</button></p>  
     `);
         let plate = {
             nombre: nombre,
@@ -62,6 +62,7 @@ function addToMenu() {
         counter++;
     }
 }
+
 
 function deletePlato() {
     let paragraphID = event.target.id.split("_")[1];

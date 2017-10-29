@@ -55,6 +55,11 @@ table {
     border-color: rgb(46, 104, 70);
 }
 
+.btn-primary:hover {
+    background: rgb(26, 59, 40);
+    border-color: rgb(26, 59, 40);
+}
+
 .page-item:active {
     background: #316D4A;
     border-color: rgb(46, 104, 70);
@@ -71,6 +76,11 @@ table {
 .btn-info {
     background: #EEA74B;
     border-color: rgb(228, 158, 72);
+}
+
+.btn-info:hover {
+    background: rgb(209, 138, 51);
+    border-color: rgb(209, 138, 51);
 }
 
 .colorwhite {
