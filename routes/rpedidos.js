@@ -1,4 +1,4 @@
-module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB, pedidosGestorDB, ObjectID) {
+module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB, pedidosGestorDB, ObjectID, gestorMail) {
     app.get("/p/pedido/:id", function(req, res) {
         let criterio = {
             _id: restauranteGestorDB.mongo.ObjectID(req.params.id)
@@ -12,12 +12,10 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB, pedi
 
 
     app.post("/p/pedido", function(req, res) {
-
         let pedido = req.body;
-
         pedido.propietario = req.session.usuario;
-
         pedidosGestorDB.insertarPedido(pedido, () => {
+            gestorMail.sendMail(req.session.usuario, "Pedido en camino", "Hemos registrado tu pedido. En breve lo tendrás en casa. ¡Que aproveche!");
             res.sendStatus(200);
         })
     });
