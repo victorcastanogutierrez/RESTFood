@@ -13,13 +13,13 @@
                         <h3 class="pb-3">Registro</h3>
                         <form method="post" action="/usuario">
                             <div class="form-group"> <label>Nombre</label>
-                                <input class="form-control" placeholder="Nombre completo" name="nombre"> </div>
+                                <input class="form-control" placeholder="Nombre completo" name="nombre" required> </div>
                             <div class="form-group"> <label>Correo electrónico</label>
-                                <input type="email" class="form-control" placeholder="Correo electrónico válido" name="email"> </div>
+                                <input type="email" class="form-control" placeholder="Correo electrónico válido" required name="email"> </div>
                             <div class="form-group"> <label>Contraseña</label>
-                                <input type="password" class="form-control" placeholder="Contraseña" name="password"> </div>
+                                <input type="password" class="form-control" placeholder="Contraseña" required name="password"> </div>
                             <div class="form-group"> <label>Repite contraseña</label>
-                                <input type="password" class="form-control" placeholder="Repite la contraseña" name="password2"> </div>
+                                <input type="password" class="form-control" placeholder="Repite la contraseña" required name="password2"> </div>
                             <div class="container">
                                 <div class="row">
                                     <button type="submit" class="btn mt-2 btn-outline-dark">Registrarme</button>
