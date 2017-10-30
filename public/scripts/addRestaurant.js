@@ -127,8 +127,5 @@ function confirm() {
         })
         .done(response => {
             document.getElementById("misRestaurantes").click();
-        })
-        .fail(response => {
-
         });
 }
