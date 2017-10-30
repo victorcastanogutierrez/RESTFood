@@ -50,6 +50,11 @@ table {
     border-color: rgb(46, 104, 70);
 }
 
+.btn-info:disabled:hover {
+    background: rgb(26, 59, 40);
+    border-color: rgb(26, 59, 40);
+}
+
 .btn-primary {
     background: #316D4A;
     border-color: rgb(46, 104, 70);
@@ -76,6 +81,7 @@ table {
 .btn-info {
     background: #EEA74B;
     border-color: rgb(228, 158, 72);
+    cursor: pointer;
 }
 
 .btn-info:hover {
