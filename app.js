@@ -1,6 +1,6 @@
 //Constantes
-const usuarioEmail = "Cambiame";
-const passwordEmail = "Cambiame";
+const usuarioEmail = "emailpoonode@gmail.com";
+const passwordEmail = "emailpoo";
 
 //Requires
 var express = require("express");
