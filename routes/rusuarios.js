@@ -71,11 +71,15 @@ module.exports = function(app, swig, gestorDBUsuarios) {
                 gestorDBUsuarios,
                 usuario.email,
                 () => {
-                    res.send("el usuario ya existe");
+                    res.redirect("/acceso" +
+                        "?mensaje=Correo electrónico en uso" +
+                        "&tipoMensaje=alert-danger");
                 },
                 () => gestorDBUsuarios.insertarUsuario(usuario, (id) => {
                     if (id == null) {
-                        res.send("error");
+                        res.redirect("/acceso" +
+                            "?mensaje=Correo electrónico en uso" +
+                            "&tipoMensaje=alert-danger");
                     } else {
                         req.session.usuario = usuario.email;
                         res.redirect("/home");
