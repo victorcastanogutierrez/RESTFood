@@ -1,6 +1,11 @@
 .pPedido {
-    color: #5E5E5E;
+    color: #4b3f3a;
     margin-bottom: 5px;
+    border-bottom: 1px dashed #beab82;
+}
+
+.darkbrown {
+    color: #4b3f3a;
 }
 
 tr {
@@ -11,6 +16,10 @@ tr {
 
 input[type='checkbox'] {
     margin-left: 0px
+}
+
+.busquedas {
+    display: inline-flex;
 }
 
 .bgImage {
@@ -210,4 +219,18 @@ a:hover {
     display: inline-block;
     vertical-align: middle;
     padding-top: 100%;
+}
+
+.moreBrown {
+    background: #f1dbb6;
+}
+
+.brown {
+    background: #f7f3e7;
+}
+
+.aligned {
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-around;
 }
