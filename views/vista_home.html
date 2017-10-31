@@ -1,12 +1,4 @@
-{% block extra_nav %}
-    {% if !logged %}
-        {% include "./private_nav.html" %}
-    {% else %}
-        {% include "./public_nav.html" %}
-    {% endif %}
-{% endblock %}
-
-{% extends "base.html" %} {% block contenido_principal %}
+{% block extra_nav %} {% if !logged %} {% include "./private_nav.html" %} {% else %} {% include "./public_nav.html" %} {% endif %} {% endblock %} {% extends "base.html" %} {% block contenido_principal %}
 <div class="py-5">
     <div class="container">
         <div class="row py-3">
@@ -38,7 +30,7 @@
             </div>
             <div class="col-md-3"></div>
         </div>
-        
+
         <!-- Búsqueda avanzada -->
         <div class="row">
             <div class="col-md-3"></div>
@@ -53,7 +45,7 @@
                             <span class="input-group-addon" id="basic-addon1">http://</span>
                             <input id="webAv" type="text" class="form-control" placeholder="Página web del restaurante" aria-describedby="basic-addon1" name="webAvanzada" required>
                         </div>
-                        <button class="btn btn-info" type="submit" >Buscar</button>
+                        <button class="btn btn-info" type="submit">Buscar</button>
                     </form>
                 </div>
             </div>
@@ -68,13 +60,11 @@
                     <li class="page-item pr-3" id="pi-{{ pagina}}">
                         <a class="page-link" href="/home?pg=1&#38;busqueda={{busquedaValor}}&#38;param={{paramValor}}&#38;nombreAvanzada={{nombreAv}}&#38;webAvanzada={{webAv}}&#38;reset=1"> &#60;&#60; </a>
                     </li>
-                    {% endif %} 
-                    {% for pagina in paginas %}
+                    {% endif %} {% for pagina in paginas %}
                     <li class="page-item" id="pi-{{ pagina}}">
                         <a class="page-link" href="/home?pg={{ pagina }}&#38;busqueda={{busquedaValor}}&#38;param={{paramValor}}&#38;nombreAvanzada={{nombreAv}}&#38;webAvanzada={{webAv}}&#38;reset=1">{{ pagina }}</a>
                     </li>
-                    {% endfor %} 
-                    {% if paginas.length > 0 %}
+                    {% endfor %} {% if paginas.length > 0 %}
                     <li class="page-item mx-3" id="pi-{{ pagina}}">
                         <a class="page-link" href="/home?pg={{paginas[paginas.length-1]}}&#38;busqueda={{busquedaValor}}&#38;param={{paramValor}}&#38;nombreAvanzada={{nombreAv}}&#38;webAvanzada={{webAv}}&#38;reset=1"> &#62;&#62; </a>
                     </li>
@@ -112,7 +102,7 @@
                                 </div>
                             </div>
                             <div class="col-md-1">
-                                <a class="menuLink" href="/p/pedido/{{restaurante._id.toString()}}">¡Pedir!</a>
+                                <a class="round" href="/p/pedido/{{restaurante._id.toString()}}">+</a>
                             </div>
                         </div>
                     </div>
