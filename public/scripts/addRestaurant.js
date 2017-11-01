@@ -2,6 +2,11 @@ let menuPlates = [];
 let currentRestaurant;
 let counter = 0;
 
+
+
+
+
+
 function goToMakeMenu() {
     event.preventDefault();
     let nombreRes = $("#nombreRes").val();
@@ -35,7 +40,7 @@ function goToMakeMenu() {
         $("#alertDiv").css("display", "none");
         $("#confirmRestaurant").css("display", "none");
         $("#menu").css("display", "flex");
-        changeStep("btnInfo", "btnMenu");
+        changeStep("btnInfo", "btnMenu", "btnConfirmar");
 
     } else {
         $("#alertDiv").css("display", "block");
@@ -43,10 +48,7 @@ function goToMakeMenu() {
     }
 }
 
-function changeStep(fromButton, toButton) {
-    $(`#${fromButton}`).toggleClass("btn-primary")
-    $(`#${toButton}`).toggleClass("btn-primary")
-}
+
 
 function addToMenu() {
     event.preventDefault();
@@ -84,7 +86,7 @@ function atrasAInfo() {
     $("#infoGeneral").css("display", "block");
     $("#menu").css("display", "none");
     $("#confirmRestaurant").css("display", "none");
-    changeStep("btnMenu", "btnInfo");
+    changeStep("btnMenu", "btnInfo", "btnConfirmar");
 
 
 }
@@ -96,7 +98,7 @@ function siguienteAConfirmar() {
         currentRestaurant.menu = menuPlates;
         $("#alertDiv").css("display", "none");
         fillInfoRestaurant(currentRestaurant);
-        changeStep("btnMenu", "btnConfirmar");
+        changeStep("btnMenu", "btnConfirmar", "btnInfo");
 
     } else {
         $("#alertDiv").css("display", "block");
@@ -133,7 +135,7 @@ function atrasAMenu() {
     $("#menu").css("display", "flex");
     $("#confirmRestaurant").css("display", "none");
     $("#infoGeneral").css("display", "none");
-    changeStep("btnConfirmar", "btnMenu");
+    changeStep("btnConfirmar", "btnMenu", "btnInfo");
 
 
 }
@@ -146,4 +148,13 @@ function confirm() {
     }).done(response => {
         document.getElementById("misRestaurantes").click();
     });
+}
+
+function changeStep(fromButton, toButton, otherButton) {
+    $(`#${fromButton}`).addClass("btn-default");
+    $(`#${fromButton}`).removeClass("btn-primary");
+    $(`#${toButton}`).removeClass("btn-default");
+    $(`#${toButton}`).addClass("btn-primary");
+    $(`#${otherButton}`).removeClass("btn-primary");
+    $(`#${otherButton}`).addClass("btn-default");
 }
