@@ -246,6 +246,11 @@ a:hover {
     padding-right: 5rem;
 }
 
+.alignedRight {
+    margin-left: 6rem;
+    width: 100%;
+}
+
 .formCrearRestaurante input {
     margin-bottom: 20px;
 }
@@ -296,6 +301,9 @@ a:hover {
     border-radius: 15px;
 }
 
-.paginationTop {
-    margin-bottom: -10em !important;
+#resumenPaginacion {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: -4em !important;
 }

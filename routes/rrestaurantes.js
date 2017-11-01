@@ -66,6 +66,8 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB) {
         const param = req.query.param;
         const nombreAvanzado = req.query.nombreAvanzada;
         const webAvanzado = req.query.webAvanzada;
+        let realizaBusqueda = false;
+        let nResultados = null;
         if (busqueda && param) {
             // En caso de que la búsqueda sea al darle al botón buscar
             // automáticamente pasa a 1. En caso de que esté paginando
@@ -75,6 +77,7 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB) {
             }
             criterios = {};
             criterios[param] = busqueda;
+            realizaBusqueda = true;
         } else if (nombreAvanzado && webAvanzado) { // Si no es búsqueda simple puede ser avanzada
             if (!req.query.reset) {
                 pg = 1;
@@ -85,7 +88,8 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB) {
                 }, {
                     "web": webAvanzado
                 }]
-            }
+            };
+            realizaBusqueda = true;
         }
 
         restauranteGestorDB.buscarRestaurantesPgCriterios(criterios, (result, num) => {
@@ -95,13 +99,17 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB) {
                 ultimaPg = ultimaPg + 1;
             }
 
+            if (realizaBusqueda) {
+                nResultados = num;
+            }
+
             var paginas = []; // paginas mostrar
             for (var i = pg - 2; i <= pg + 2; i++) {
                 if (i > 0 && i <= ultimaPg) {
                     paginas.push(i);
                 }
             }
-
+            
             const logged = !(req.session.usuario);
             const resp = {
                 restaurantes: result,
@@ -111,7 +119,8 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB) {
                 paramValor: param,
                 logged: logged,
                 nombreAv: nombreAvanzado,
-                webAv: webAvanzado
+                webAv: webAvanzado,
+                nResultados: nResultados
             };
             
             var respuesta = swig.renderFile('views/vista_home.html', resp);
