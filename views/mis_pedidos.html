@@ -10,7 +10,7 @@
                             <th class="col-md-1">Restaurante</th>
                             <th>Precio</th>
                             <th class="col-md-1 col-lg-1">Fecha</th>
-                            <th></th>
+                            <th>Valoración</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -22,9 +22,15 @@
                                 <td>{{ pedido.precio }}</td>
                                 <td>{{pedido.hora.getDate()}}/{{pedido.hora.getMonth()+1}}/{{pedido.hora.getFullYear()}}</td>
                                 {% if pedido.valoracion != null %}
-                                <th><button type="button" class="btn btn-info" disabled>Valorado</button></th>
+                                <td>
+                                    {% if pedido.valoracion.valoracionNota >= 5 %}
+                                        <p class="aprobado">{{pedido.valoracion.valoracionNota}}/10</p>
+                                    {% else %}
+                                        <p class="suspenso">{{pedido.valoracion.valoracionNota}}/10</p>
+                                    {% endif %}
+                                </td>
                                 {% else %}
-                                <th><button type="button" class="btn btn-info addValoracion" data-toggle="modal" data-target="#valoracionModal">Valorar</button></th>
+                                <td><button type="button" class="btn btn-info addValoracion" data-toggle="modal" data-target="#valoracionModal">Valorar</button></td>
                                 {% endif %}
                             </tr>
                         </div>
