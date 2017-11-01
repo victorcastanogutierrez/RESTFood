@@ -322,3 +322,10 @@ a:hover {
     margin-left: 6.5rem;
     font-style: italic;
 }
+
+.star-rating {
+    line-height:32px;
+    font-size:1.25em;
+  }
+  
+  .star-rating .fa-star{color: yellow;}

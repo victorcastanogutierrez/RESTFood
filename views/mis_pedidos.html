@@ -23,10 +23,10 @@
                                 <td>{{ pedido.elapsedTime }}</td>
                                 {% if pedido.valoracion != null %}
                                 <td>
-                                    {% if pedido.valoracion.valoracionNota >= 5 %}
-                                        <p class="aprobado">{{pedido.valoracion.valoracionNota}}/10</p>
+                                    {% if pedido.valoracion.valoracionNota >= 3 %}
+                                        <p class="aprobado">{{pedido.valoracion.valoracionNota}}/5</p>
                                     {% else %}
-                                        <p class="suspenso">{{pedido.valoracion.valoracionNota}}/10</p>
+                                        <p class="suspenso">{{pedido.valoracion.valoracionNota}}/5</p>
                                     {% endif %}
                                 </td>
                                 {% else %}
@@ -54,12 +54,17 @@
             <form action="/p/valorar" method="post">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="exampleSelect1">Valoración ({{opciones[0]}} - {{opciones[opciones.length-1]}})</label>
-                        <select class="form-control" id="valoracionNota" name="valoracionNota" required>
-                            {% for opcion in opciones %}
-                                <option value="{{opcion}}">{{opcion}}</option>
-                            {% endfor %}
-                        </select>
+
+                        <div class="star-rating">
+                            <span class="fa fa-star-o" data-rating="1"></span>
+                            <span class="fa fa-star-o" data-rating="2"></span>
+                            <span class="fa fa-star-o" data-rating="3"></span>
+                            <span class="fa fa-star-o" data-rating="4"></span>
+                            <span class="fa fa-star-o" data-rating="5"></span>
+                            <input type="hidden" name="whatever1" class="rating-value" value="2.56">
+                        </div>
+
+                        <input type="number" name="valoracionNota" id="valoracionNum" hidden>
                         <div class="form-group my-3">
                             <label for="valoracionText">Justifique brevemente su valoración</label>
                             <textarea name="valoracionDes" class="form-control" id="valoracionText" rows="3" required></textarea>
