@@ -25,7 +25,11 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB, pedi
             propietario: req.session.usuario
         };
         pedidosGestorDB.findAll('pedidos', criterio, (pedidos) => {
-            pedidos.map(x => x.hora = new Date(x.hora));
+            pedidos.map(x =>  {
+                x.hora = new Date(x.hora);
+                x.elapsedTime = getElapsedTime(x.hora);
+            });
+            
             let ops = [];
             for (let i = 1 ; i <= 10; i++) {
                 ops.push(i);
@@ -73,3 +77,41 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB, pedi
         });
     });
 };
+
+function dayOfYear(fecha) {
+    var start = new Date(fecha.getFullYear(), 0, 0);
+    var diff = fecha - start;
+    var oneDay = 1000 * 60 * 60 * 24;
+    return Math.floor(diff / oneDay);
+}
+
+function getElapsedTime(tiempo) {
+    const actual = new Date();
+    let result = "Hace ";
+    const daysDiff = dayOfYear(actual) - dayOfYear(tiempo);
+
+    if (actual.getFullYear() != tiempo.getFullYear()) {
+        let anios = actual.getFullYear() - tiempo.getFullYear();
+        result += anios + " año" + (anios > 1 ? "s" : "") + ", ";
+    }
+    if (daysDiff == 0) {
+        if (actual.getHours() == tiempo.getHours()) {
+            if (actual.getMinutes() == tiempo.getMinutes()) {
+                result += (actual.getSeconds() - tiempo.getSeconds()) + " segundos";
+            } else {
+                result += (actual.getMinutes() - tiempo.getMinutes()) + " minutos";
+            }
+        } else {
+            result += (actual.getHours() - tiempo.getHours()) + " horas";
+        }
+    } else if (daysDiff > 0 && daysDiff <= 31) {
+        result += daysDiff + " dias";
+    } else if (daysDiff <= 365) {
+        result += (Math.round(daysDiff / 31) + " meses y " + (daysDiff % 31) + " días");
+    } else {
+        result += "más de " + Math.round(daysDiff / 31) + " años";
+    }
+    
+    
+    return result;
+}

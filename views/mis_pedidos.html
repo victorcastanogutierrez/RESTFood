@@ -20,7 +20,7 @@
                                 <td hidden><input type="text" value="{{pedido._id.toString()}}"></td>
                                 <td>{{ pedido.restaurante }}</td>
                                 <td>{{ pedido.precio }}</td>
-                                <td>{{pedido.hora.getDate()}}/{{pedido.hora.getMonth()+1}}/{{pedido.hora.getFullYear()}}</td>
+                                <td>{{ pedido.elapsedTime }}</td>
                                 {% if pedido.valoracion != null %}
                                 <td>
                                     {% if pedido.valoracion.valoracionNota >= 5 %}
