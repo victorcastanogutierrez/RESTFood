@@ -6,7 +6,7 @@
             <div id="infoGeneral" class="col-md-12">
                 <h1 class="">Crear Restaurante</h1>
                 <form class="" method="post" action="/p/restaurante">
-                    <div class="form-group">
+                    <div class="form-group formCrearRestaurante">
                         <label>Nombre del restaurante</label>
                         <input type="text" id="nombreRes" name="nombre" class="form-control" placeholder="Introduce el nombre del restaurante" required>
                         <label>Dirección del restaurante</label>
@@ -16,7 +16,7 @@
                         <label>Telefono del restaurante</label>
                         <input type="text" id="telefonoRes" name="telefono" class="form-control" placeholder="Introduce el telefono del restaurante" required>
                         <label>Página Web</label>
-                        <div class="input-group">
+                        <div class="input-group formCrearRestuante">
                             <span class="input-group-addon" id="basic-addon1">http://</span>
                             <input type="text" id="webRes" name="web" class="form-control" placeholder="Introduce la web del restaurante" required>
                         </div>
@@ -35,32 +35,44 @@
                 </form>
             </div>
             <div id="menu" class="menu col-md-12">
-                <form class="">
-                    <div class="form-group">
-                        <h1 class="">Añade Platos</h1>
-                        <label>Nombre del plato</label>
-                        <input required id="nombreplato" type="text" name="nombreplato" class="form-control" placeholder="Introduce el nombre del plato">
-                        <label>Precio del plato</label>
-                        <input required id="precioplato" type="number" min="0" name="precioplato" class="form-control" placeholder="Introduce el precio del plato">
+                <h1 class="">Añade Platos</h1>
+                <div class="row">
+                    <div class="col-md-6">
+                        <form class="formCrearRestaurante">
+                            <label>Nombre del plato</label>
+                            <input required id="nombreplato" type="text" name="nombreplato" class="form-control" placeholder="Introduce el nombre del plato">
+                            <label>Precio del plato</label>
+                            <input required id="precioplato" type="number" min="0" name="precioplato" class="form-control" placeholder="Introduce el precio del plato">
+                            <button onclick="addToMenu()" class="btn btn-primary">Añadir Plato </button>
+                        </form>
                     </div>
-                    <button onclick="addToMenu()" class="btn btn-primary">Añadir Plato </button>
-                </form>
-                <h3>Aquí verás los platos que vas añadiendo</h3>
-                <div id="scrollable" class="scrollable"></div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header moreBrown">Tu menú</div>
+                            <div class="card-body brown" id="pedidos">
+                                <h4 class="center darkbrown">Platos</h4>
+                                <table id="scrollable" class="table-responsive scrollable">
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br/>
                 <div class="botonera">
                     <button onclick="atrasAInfo()" class="btn btn-primary">Atrás</button>
                     <button onclick="siguienteAConfirmar()" class="btn btn-primary right">Siguiente</button>
                 </div>
             </div>
-            <div id="confirmRestaurant" class="menu col-md-12">
-                <h1 class="">Confirmar restaurante</h1 </div>
-                <p id="currentCreation"></p>
-                <div class="botonera">
-                    <button onclick="atrasAMenu()" class="btn btn-primary">Atrás</button>
-                    <button onclick="confirm()" class="btn btn-primary right"> Confirmar Creación</button>
-                </div>
+        </div>
+        <div id="confirmRestaurant" class="menu col-md-12">
+            <h1 class="">Confirmar restaurante</h1 </div>
+            <p id="currentCreation"></p>
+            <div class="botonera">
+                <button onclick="atrasAMenu()" class="btn btn-primary">Atrás</button>
+                <button onclick="confirm()" class="btn btn-primary right"> Confirmar Creación</button>
             </div>
         </div>
-    </div> {% endblock %} {% block script_adicional %}
-    <script src="../scripts/addRestaurant.js"></script>
-    {% endblock %}
+    </div>
+</div> {% endblock %} {% block script_adicional %}
+<script src="../scripts/addRestaurant.js"></script>
+{% endblock %}

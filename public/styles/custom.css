@@ -111,7 +111,7 @@ table {
     margin-top: 10px;
     overflow: scroll;
     display: flex;
-    width: 40%;
+    width: 100%;
     flex-direction: column;
     align-self: center;
     height: 40%;
@@ -214,6 +214,11 @@ a:hover {
     background: #316D4A;
 }
 
+.spaced {
+    display: inline-flex;
+    justify-content: space-between;
+}
+
 .round::before {
     content: "";
     display: inline-block;
@@ -233,4 +238,8 @@ a:hover {
     display: inline-flex;
     width: 100%;
     justify-content: space-around;
+}
+
+.formCrearRestaurante input {
+    margin-bottom: 20px;
 }

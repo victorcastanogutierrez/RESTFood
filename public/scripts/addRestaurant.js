@@ -2,7 +2,6 @@ let menuPlates = [];
 let currentRestaurant;
 let counter = 0;
 
-
 function goToMakeMenu() {
     event.preventDefault();
     let nombreRes = $("#nombreRes").val();
@@ -37,7 +36,7 @@ function goToMakeMenu() {
         $("#menu").css("display", "flex");
     } else {
         $("#alertDiv").css("display", "block");
-        $("#alertDiv").text("Por favor, rellene todos los campos del formulario")
+        $("#alertDiv").text("Por favor, rellene todos los campos del formulario");
     }
 }
 
@@ -45,10 +44,13 @@ function addToMenu() {
     event.preventDefault();
     let nombre = $("#nombreplato").val();
     let precio = $("#precioplato").val();
-
     if (nombre !== "" && precio !== "") {
         $("#scrollable").append(`
-        <p id="plato${counter}">${nombre} - ${precio} <button class="btn btn-link px-0" id="btn_${counter}" onclick="deletePlato()"> Borrar plato</button></p>  
+        <tr class="pPedido spaced" id="plato${counter}">
+            <td>${nombre}</td>
+            <td>${precio}€</td>
+            <td><button class="btn btn-link px-0" id="btn_${counter}" onclick="deletePlato()"> Borrar plato</button></td>
+        </tr>  
     `);
         let plate = {
             nombre: nombre,
@@ -62,7 +64,6 @@ function addToMenu() {
         counter++;
     }
 }
-
 
 function deletePlato() {
     let paragraphID = event.target.id.split("_")[1];
@@ -121,11 +122,10 @@ function atrasAMenu() {
 
 function confirm() {
     $.ajax({
-            type: "POST",
-            url: "/p/restaurante",
-            data: currentRestaurant
-        })
-        .done(response => {
-            document.getElementById("misRestaurantes").click();
-        });
+        type: "POST",
+        url: "/p/restaurante",
+        data: currentRestaurant
+    }).done(response => {
+        document.getElementById("misRestaurantes").click();
+    });
 }

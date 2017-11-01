@@ -1,8 +1,4 @@
-{% block extra_nav %}
-    {% include "./private_nav.html" %}
-{% endblock %}
-
-{% extends "base.html" %} {% block contenido_principal %}
+{% block extra_nav %} {% include "./private_nav.html" %} {% endblock %} {% extends "base.html" %} {% block contenido_principal %}
 <div id="pedido" class="py-5">
     <div class="container">
         <div class="row">
@@ -32,9 +28,9 @@
                 </table>
             </div>
             {% if sinValorar > 0 %}
-                <div class="alert alert-warning">
-                    <strong>¡Espera!</strong> Tienes {{sinValorar}} pedidos sin valorar aún. <a href="/p/mispedidos">¡Valóralos!</a>
-                </div>
+            <div class="alert alert-warning">
+                <strong>¡Espera!</strong> Tienes {{sinValorar}} pedidos sin valorar aún. <a href="/p/mispedidos">¡Valóralos!</a>
+            </div>
             {% endif %}
         </div>
     </div>
