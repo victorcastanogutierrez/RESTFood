@@ -317,3 +317,8 @@ a:hover {
     color:red;
     text-align: center;
 }
+
+#helpText {
+    margin-left: 6.5rem;
+    font-style: italic;
+}
