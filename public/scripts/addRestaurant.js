@@ -33,11 +33,19 @@ function goToMakeMenu() {
         currentRestaurant = restaurant;
         $("#infoGeneral").css("display", "none");
         $("#alertDiv").css("display", "none");
+        $("#confirmRestaurant").css("display", "none");
         $("#menu").css("display", "flex");
+        changeStep("btnInfo", "btnMenu");
+
     } else {
         $("#alertDiv").css("display", "block");
         $("#alertDiv").text("Por favor, rellene todos los campos del formulario");
     }
+}
+
+function changeStep(fromButton, toButton) {
+    $(`#${fromButton}`).toggleClass("btn-primary")
+    $(`#${toButton}`).toggleClass("btn-primary")
 }
 
 function addToMenu() {
@@ -75,6 +83,10 @@ function deletePlato() {
 function atrasAInfo() {
     $("#infoGeneral").css("display", "block");
     $("#menu").css("display", "none");
+    $("#confirmRestaurant").css("display", "none");
+    changeStep("btnMenu", "btnInfo");
+
+
 }
 
 function siguienteAConfirmar() {
@@ -84,6 +96,8 @@ function siguienteAConfirmar() {
         currentRestaurant.menu = menuPlates;
         $("#alertDiv").css("display", "none");
         fillInfoRestaurant(currentRestaurant);
+        changeStep("btnMenu", "btnConfirmar");
+
     } else {
         $("#alertDiv").css("display", "block");
         $("#alertDiv").text("Añada al menos un plato");
@@ -118,6 +132,10 @@ function fillInfoRestaurant(restaurant) {
 function atrasAMenu() {
     $("#menu").css("display", "flex");
     $("#confirmRestaurant").css("display", "none");
+    $("#infoGeneral").css("display", "none");
+    changeStep("btnConfirmar", "btnMenu");
+
+
 }
 
 function confirm() {
