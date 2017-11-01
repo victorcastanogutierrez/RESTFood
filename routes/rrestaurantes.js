@@ -67,7 +67,7 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB) {
         const nombreAvanzado = req.query.nombreAvanzada;
         const webAvanzado = req.query.webAvanzada;
         let realizaBusqueda = false;
-        let nResultados = null;
+        let nResultados = -1;
         if (busqueda && param) {
             // En caso de que la búsqueda sea al darle al botón buscar
             // automáticamente pasa a 1. En caso de que esté paginando
