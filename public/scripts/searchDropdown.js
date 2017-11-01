@@ -31,12 +31,15 @@ $(document).ready(function () {
 });
 
 function getHelpText(param) {
+    console.log(param);
     switch (param) {
         case 'nombre':
             return "Por ejemplo: Go Sushi";
         case 'direccion':
-            return "Por ejemplo: Calle Asturias 8"
+            return "Por ejemplo: Calle Asturias 8";
         case 'web':
-            return "Por ejemplo: www.donmiguel.es"
+            return "Por ejemplo: www.donmiguel.es";
+        default:
+            return "";
     }
 }
