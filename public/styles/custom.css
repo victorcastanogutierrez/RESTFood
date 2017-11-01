@@ -239,10 +239,11 @@ a:hover {
     background: #f7f3e7;
 }
 
-.aligned {
+.alignedLeft {
     display: inline-flex;
     width: 100%;
-    justify-content: space-around;
+    justify-content: flex-end;
+    padding-right: 5rem;
 }
 
 .formCrearRestaurante input {
@@ -293,4 +294,8 @@ a:hover {
     font-size: 12px;
     line-height: 1.428571429;
     border-radius: 15px;
+}
+
+.paginationTop {
+    margin-bottom: -10em !important;
 }
