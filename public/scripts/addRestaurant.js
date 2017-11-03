@@ -2,11 +2,6 @@ let menuPlates = [];
 let currentRestaurant;
 let counter = 0;
 
-
-
-
-
-
 function goToMakeMenu() {
     event.preventDefault();
     let nombreRes = $("#nombreRes").val();

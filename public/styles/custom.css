@@ -162,9 +162,21 @@ table {
     color: rgb(82, 82, 82);
 }
 
+#nav {
+    height: 7vh;
+}
+
+main {
+    height: 93vh;
+}
+
 .customcard {
     text-align: center;
     margin-top: 10%;
+}
+
+.bg-site {
+    background: #316D4A
 }
 
 a {
@@ -302,7 +314,7 @@ a:hover {
 }
 
 #resumenPaginacion {
-    display:flex;
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: -4em !important;
@@ -314,7 +326,7 @@ a:hover {
 }
 
 .suspenso {
-    color:red;
+    color: red;
     text-align: center;
 }
 
@@ -324,8 +336,10 @@ a:hover {
 }
 
 .star-rating {
-    line-height:32px;
-    font-size:1.25em;
-  }
-  
-  .star-rating .fa-star{color: yellow;}
+    line-height: 32px;
+    font-size: 1.25em;
+}
+
+.star-rating .fa-star {
+    color: yellow;
+}
