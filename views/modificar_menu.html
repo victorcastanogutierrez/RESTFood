@@ -1,44 +1,46 @@
 {% block extra_nav %} {% include "./private_nav.html" %} {% endblock %} {% extends "base.html" %} {% block contenido_principal %}
-<div id="pedido" class="py-5">
-    <div class="container">
-        <div class="row">
-            <div class="table-responsive">
-                <h1>{{restaurante.nombre}}</h1>
-                <p>Modificar Menu</p>
-                <p id="hidden" hidden>{{restaurante._id.toString()}}</p>
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th class="col-md-1">Plato</th>
-                            <th>Precio</th>
-                            <th>Ofertar</th>
-                            <th>Borrar</th>
-                        </tr>
-                    </thead>
-                    <tbody id="platos">
-                        {% for plato in restaurante.menu %}
-                        <tr id="plato{{plato.id}}">
-                            <td><input id="nombre{{plato.id}}" class="form-control" type="text" value="{{ plato.nombre }}"> </td>
-                            <td><input min="0" id="precio{{plato.id}}" class="form-control" type="number" value="{{ plato.precio }}"></td>
-                            <td><input class="form-check-input" type="checkbox" id="check{{plato.id}}"></td>
-                            <td><button id="delete{{plato.id}}" onclick="deletePlato()" class="btn btn-danger">Borrar</button></td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                    <tfoot>
-                        <tr id="nuevoPlato">
-                            <td> <input id="newPlatoName" class="form-control" type="text" value="" placeholder="Añada nuevo Plato"> </td>
-                            <td><input min="0" id="newPlatoPrecio" class="form-control" type="number" value="" placeholder="0"></td>
-                            <td></td>
-                            <td><button onclick="addNuevoPlato()" class="btn btn-primary">Añadir</button></td>
-                        </tr>
-                    </tfoot>
-                </table>
-                <button onclick="modifyMenu()" class="btn btn-primary">Modificar Menu</button>
+<main>
+    <div id="pedido" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="table-responsive">
+                    <h1>{{restaurante.nombre}}</h1>
+                    <p>Modificar Menu</p>
+                    <p id="hidden" hidden>{{restaurante._id.toString()}}</p>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="col-md-1">Plato</th>
+                                <th>Precio</th>
+                                <th>Ofertar</th>
+                                <th>Borrar</th>
+                            </tr>
+                        </thead>
+                        <tbody id="platos">
+                            {% for plato in restaurante.menu %}
+                            <tr id="plato{{plato.id}}">
+                                <td><input id="nombre{{plato.id}}" class="form-control" type="text" value="{{ plato.nombre }}"> </td>
+                                <td><input min="0" id="precio{{plato.id}}" class="form-control" type="number" value="{{ plato.precio }}"></td>
+                                <td><input class="form-check-input" type="checkbox" id="check{{plato.id}}"></td>
+                                <td><button id="delete{{plato.id}}" onclick="deletePlato()" class="btn btn-danger">Borrar</button></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            <tr id="nuevoPlato">
+                                <td> <input id="newPlatoName" class="form-control" type="text" value="" placeholder="Añada nuevo Plato"> </td>
+                                <td><input min="0" id="newPlatoPrecio" class="form-control" type="number" value="" placeholder="0"></td>
+                                <td></td>
+                                <td><button onclick="addNuevoPlato()" class="btn btn-primary">Añadir</button></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <button onclick="modifyMenu()" class="btn btn-primary">Modificar Menu</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</main>
 {% endblock %} {% block script_adicional %}
 <script src="/scripts/modificar_menu.js"></script>
 {% endblock %}

@@ -1,44 +1,45 @@
 {% block extra_nav %} {% include "./private_nav.html" %} {% endblock %} {% extends "base.html" %} {% block contenido_principal %}
-<div class="py-5">
-    <div class="container">
-        <div class="row">
-            <div id="alertDiv" class="alert alert-danger"></div>
-            <div class="stepwizard">
-                <div class="stepwizard-row">
-                    <div class="stepwizard-step">
-                        <button id="btnInfo" onclick="atrasAInfo()" type="button" class="btn btn-primary btn-circle">1</button>
-                        <p>Información básica</p>
-                    </div>
-                    <div class="stepwizard-step">
-                        <button id="btnMenu" onclick="goToMakeMenu()" type="button" class="btn btn-default btn-circle">2</button>
-                        <p>Menú</p>
-                    </div>
-                    <div class="stepwizard-step">
-                        <button id="btnConfirmar" onclick="siguienteAConfirmar()" type="button" class="btn btn-default btn-circle">3</button>
-                        <p>Confirmación</p>
+<main>
+    <div class="py-5">
+        <div class="container">
+            <div class="row">
+                <div id="alertDiv" class="alert alert-danger"></div>
+                <div class="stepwizard">
+                    <div class="stepwizard-row">
+                        <div class="stepwizard-step">
+                            <button id="btnInfo" onclick="atrasAInfo()" type="button" class="btn btn-primary btn-circle">1</button>
+                            <p>Información básica</p>
+                        </div>
+                        <div class="stepwizard-step">
+                            <button id="btnMenu" onclick="goToMakeMenu()" type="button" class="btn btn-default btn-circle">2</button>
+                            <p>Menú</p>
+                        </div>
+                        <div class="stepwizard-step">
+                            <button id="btnConfirmar" onclick="siguienteAConfirmar()" type="button" class="btn btn-default btn-circle">3</button>
+                            <p>Confirmación</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div id="infoGeneral" class="col-md-12">
-                <h1 class="">Crear Restaurante</h1>
-                <form class="" method="post" action="/p/restaurante">
-                    <div class="form-group formCrearRestaurante">
-                        <label>Nombre del restaurante</label>
-                        <input type="text" id="nombreRes" name="nombre" class="form-control" placeholder="Ej: Casa Carmen" required>
-                        <label>Dirección del restaurante</label>
-                        <input type="text" id="direccionRes" name="direccion" class="form-control" placeholder="Ej: Avenida Principe de Asturias" required>
-                        <label>Horario del restaurante</label>
-                        <input type="text" id="horarioRes" name="horario" class="form-control" placeholder="Ej: Lunes a Viernes de 09:00 a 21:00" required>
-                        <label>Telefono del restaurante</label>
-                        <input type="number" min=0 id="telefonoRes" name="telefono" class="form-control" placeholder="985676767" required>
-                        <label>Página Web</label>
-                        <div class="input-group formCrearRestuante">
-                            <span class="input-group-addon" id="basic-addon1">http://</span>
-                            <input type="text" id="webRes" name="web" class="form-control" placeholder="Ej: www.casacarmen.es" required>
-                        </div>
-                        <label>Tipo</label>
-                        <br/>
-                        <select id="tipoRes" class="selectpicker">
+                <div id="infoGeneral" class="col-md-12">
+                    <h1 class="">Crear Restaurante</h1>
+                    <form class="" method="post" action="/p/restaurante">
+                        <div class="form-group formCrearRestaurante">
+                            <label>Nombre del restaurante</label>
+                            <input type="text" id="nombreRes" name="nombre" class="form-control" placeholder="Ej: Casa Carmen" required>
+                            <label>Dirección del restaurante</label>
+                            <input type="text" id="direccionRes" name="direccion" class="form-control" placeholder="Ej: Avenida Principe de Asturias" required>
+                            <label>Horario del restaurante</label>
+                            <input type="text" id="horarioRes" name="horario" class="form-control" placeholder="Ej: Lunes a Viernes de 09:00 a 21:00" required>
+                            <label>Telefono del restaurante</label>
+                            <input type="number" min=0 id="telefonoRes" name="telefono" class="form-control" placeholder="985676767" required>
+                            <label>Página Web</label>
+                            <div class="input-group formCrearRestuante">
+                                <span class="input-group-addon" id="basic-addon1">http://</span>
+                                <input type="text" id="webRes" name="web" class="form-control" placeholder="Ej: www.casacarmen.es" required>
+                            </div>
+                            <label>Tipo</label>
+                            <br/>
+                            <select id="tipoRes" class="selectpicker">
                             <option class="dropdown-item" value="mexicano">Restaurante Mexicano</option>
                             <option class="dropdown-item" value="español">Restaurante Español</option>
                             <option class="dropdown-item" value="turco">Restaurante Turco</option>
@@ -46,49 +47,50 @@
                             <option class="dropdown-item" value="indio">Restaurante Indio</option>
                             <option class="dropdown-item" value="japones">Restaurante Japones</option>
                         </select>
-                    </div>
-                    <button onclick="goToMakeMenu()" class="btn btn-primary">Siguiente</button>
-                </form>
-            </div>
-            <div id="menu" class="menu col-md-12">
-                <h1 class="">Añade Platos</h1>
-                <div class="row">
-                    <div class="col-md-6">
-                        <form class="formCrearRestaurante">
-                            <label>Nombre del plato</label>
-                            <input required id="nombreplato" type="text" name="nombreplato" class="form-control" placeholder="Introduce el nombre del plato">
-                            <label>Precio del plato</label>
-                            <input required id="precioplato" type="number" min="0" name="precioplato" class="form-control" placeholder="Introduce el precio del plato">
-                            <button onclick="addToMenu()" class="btn btn-primary">Añadir Plato </button>
-                        </form>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="card-header moreBrown">Tu menú</div>
-                            <div class="card-body brown" id="pedidos">
-                                <h4 class="center darkbrown">Platos</h4>
-                                <table id="scrollable" class="table-responsive scrollable">
-                                </table>
+                        </div>
+                        <button onclick="goToMakeMenu()" class="btn btn-primary">Siguiente</button>
+                    </form>
+                </div>
+                <div id="menu" class="menu col-md-12">
+                    <h1 class="">Añade Platos</h1>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <form class="formCrearRestaurante">
+                                <label>Nombre del plato</label>
+                                <input required id="nombreplato" type="text" name="nombreplato" class="form-control" placeholder="Introduce el nombre del plato">
+                                <label>Precio del plato</label>
+                                <input required id="precioplato" type="number" min="0" name="precioplato" class="form-control" placeholder="Introduce el precio del plato">
+                                <button onclick="addToMenu()" class="btn btn-primary">Añadir Plato </button>
+                            </form>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header moreBrown">Tu menú</div>
+                                <div class="card-body brown" id="pedidos">
+                                    <h4 class="center darkbrown">Platos</h4>
+                                    <table id="scrollable" class="table-responsive scrollable">
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <br/>
-                <div class="botonera">
-                    <button onclick="atrasAInfo()" class="btn btn-primary">Atrás</button>
-                    <button onclick="siguienteAConfirmar()" class="btn btn-primary right">Siguiente</button>
+                    <br/>
+                    <div class="botonera">
+                        <button onclick="atrasAInfo()" class="btn btn-primary">Atrás</button>
+                        <button onclick="siguienteAConfirmar()" class="btn btn-primary right">Siguiente</button>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div id="confirmRestaurant" class="menu col-md-12">
-            <h1 class="">Confirmar restaurante</h1 </div>
-            <p id="currentCreation"></p>
-            <div class="botonera">
-                <button onclick="atrasAMenu()" class="btn btn-primary">Atrás</button>
-                <button onclick="confirm()" class="btn btn-primary right"> Confirmar Creación</button>
+            <div id="confirmRestaurant" class="menu col-md-12">
+                <h1 class="">Confirmar restaurante</h1 </div>
+                <p id="currentCreation"></p>
+                <div class="botonera">
+                    <button onclick="atrasAMenu()" class="btn btn-primary">Atrás</button>
+                    <button onclick="confirm()" class="btn btn-primary right"> Confirmar Creación</button>
+                </div>
             </div>
         </div>
     </div>
-</div> {% endblock %} {% block script_adicional %}
+</main> {% endblock %} {% block script_adicional %}
 <script src="../scripts/addRestaurant.js"></script>
 {% endblock %}
