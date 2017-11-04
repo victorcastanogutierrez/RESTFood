@@ -8,6 +8,10 @@
     color: #4b3f3a;
 }
 
+.fa-star:before {
+    color: #316D4A;
+}
+
 tr {
     font-size: 1.3em;
     list-style: none;

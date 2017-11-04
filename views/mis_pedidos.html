@@ -1,47 +1,48 @@
 {% block extra_nav %} {% include "./private_nav.html" %} {% endblock %} {% extends "base.html" %} {% block contenido_principal %}
-<div id="pedido" class="py-5">
-    <div class="container">
-        <div class="row">
-            <div class="infoContainer"></div>
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th class="col-md-1">Restaurante</th>
-                            <th>Precio</th>
-                            <th class="col-md-1 col-lg-1">Fecha</th>
-                            <th>Valoración</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for pedido in pedidos %}
-                        <div>
+<main>
+    <div id="pedido" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="infoContainer"></div>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
                             <tr>
-                                <td hidden><input type="text" value="{{pedido._id.toString()}}"></td>
-                                <td>{{ pedido.restaurante }}</td>
-                                <td>{{ pedido.precio }}</td>
-                                <td>{{ pedido.elapsedTime }}</td>
-                                {% if pedido.valoracion != null %}
-                                <td>
-                                    {% if pedido.valoracion.valoracionNota >= 3 %}
-                                        <p class="aprobado">{{pedido.valoracion.valoracionNota}}/5</p>
-                                    {% else %}
-                                        <p class="suspenso">{{pedido.valoracion.valoracionNota}}/5</p>
-                                    {% endif %}
-                                </td>
-                                {% else %}
-                                <td><button type="button" class="btn btn-info addValoracion" data-toggle="modal" data-target="#valoracionModal">Valorar</button></td>
-                                {% endif %}
+                                <th class="col-md-1">Restaurante</th>
+                                <th>Precio</th>
+                                <th class="col-md-1 col-lg-1">Fecha</th>
+                                <th>Valoración</th>
                             </tr>
-                        </div>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {% for pedido in pedidos %}
+                            <div>
+                                <tr>
+                                    <td hidden><input type="text" value="{{pedido._id.toString()}}"></td>
+                                    <td>{{ pedido.restaurante }}</td>
+                                    <td>{{ pedido.precio }}</td>
+                                    <td>{{ pedido.elapsedTime }}</td>
+                                    {% if pedido.valoracion != null %}
+                                    <td>
+                                        {% if pedido.valoracion.valoracionNota >= 3 %}
+                                        <p class="aprobado">{{pedido.valoracion.valoracionNota}}/5</p>
+                                        {% else %}
+                                        <p class="suspenso">{{pedido.valoracion.valoracionNota}}/5</p>
+                                        {% endif %}
+                                    </td>
+                                    {% else %}
+                                    <td><button type="button" class="btn btn-info addValoracion" data-toggle="modal" data-target="#valoracionModal">Valorar</button></td>
+                                    {% endif %}
+                                </tr>
+                            </div>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
+</main>
 <div class="modal fade" id="valoracionModal" tabindex="-1" role="dialog" aria-labelledby="valoracionModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
