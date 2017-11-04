@@ -62,7 +62,7 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB, pedi
     });
 
     app.post("/p/repetir", function(req, res) {
-        const pid = new ObjectID(req.body.idPedido)
+        const pid = new ObjectID(req.body.pedidoRepetirId);
         pedidosGestorDB.clonarPedido(pid, (err) => {
             if (err) {
                 console.log(err);
