@@ -47,6 +47,8 @@ require("./routes/rrestaurantes.js")(
     userGestorDB,
     restauranteGestorDB
 );
+require("./routes/rinformacion.js")(app, swig);
+
 
 //Mailvars
 var transporter = nodemailer.createTransport({
@@ -76,7 +78,7 @@ app.use(function(err, req, res, next) {
     }
 });
 
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
     //CORS
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
