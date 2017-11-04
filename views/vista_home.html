@@ -51,7 +51,7 @@
             <div class="col-md-3"></div>
         </div>
 
-        <div id="resumenPaginacion">
+        <div>
             {% if nResultados > 0 %}
             <p class="alignedRight my-3">{{nResultados}} restaurantes encontrados</p>
             {% endif %}
@@ -76,7 +76,7 @@
             <div class="col-md-1"></div>
             <div class="col-md-10 my-3">
                 {% for restaurante in restaurantes %}
-                <div class="card cardHover my-5 py-3 pl-3">
+                <div class="card cardHover separado py-3 pl-3">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-3">
