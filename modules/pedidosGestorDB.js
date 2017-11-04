@@ -43,6 +43,31 @@ class PedidoGestorDB extends DBConnector {
         });
     }
 
+    clonarPedido(pedido_id, funcionCallback, errorCallback) {
+
+        const criterios = {
+            "_id": pedido_id
+        };
+        this.getConnection((err, db) => {
+            if (err) {
+                funcionCallback(null);
+            } else {
+                let pedidos = db.collection("pedidos");
+                this.findAll('pedidos', criterios, result => {
+                    if (result && result.length > 0) {
+                        const pedido = result[0];
+                        pedido._id = null;
+        
+                        pedidos.insert(pedido, (err, result) => {
+                            err ? funcionCallback(null) : funcionCallback(err);
+                            db.close();
+                        });
+                    };
+                });
+            }
+        });
+    }
+
     updatePedido(criterios, pedido, successCallback, errCallback) {
         this.getConnection((err, db) => {
             if (err) {

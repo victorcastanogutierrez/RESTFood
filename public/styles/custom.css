@@ -344,3 +344,7 @@ a:hover {
 .star-rating .fa-star {
     color: yellow;
 }
+
+.pointer:hover {
+    cursor: pointer;
+}

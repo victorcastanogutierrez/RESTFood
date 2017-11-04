@@ -3,6 +3,10 @@ $(document).ready(function () {
         const valId = $(this).closest('tr').find("input").val();
         $("#pedidoId").val(valId);
     });
+    $("#btRepetirPedido").click(function() {
+        const valId = $(this).closest('tr').find("input").val();
+        $("#repetirPedidoId").val(valId);
+    });
     const notaDefault = 2;
     $star_rating.siblings('input.rating-value').val(notaDefault);
     $("#valoracionNum").val(notaDefault); // Por defecto

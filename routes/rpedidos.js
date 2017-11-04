@@ -61,6 +61,20 @@ module.exports = function(app, swig, gestorDBUsuarios, restauranteGestorDB, pedi
         });
     });
 
+    app.post("/p/repetir", function(req, res) {
+        const pid = new ObjectID(req.body.idPedido)
+        pedidosGestorDB.clonarPedido(pid, (err) => {
+            if (err) {
+                console.log(err);
+            } else {
+                gestorMail.sendMail(req.session.usuario, "Pedido en camino", "¿Repites? ¡Buena elección! En breve lo tendrás en casa. ¡Que aproveche!");
+                res.redirect("/p/mispedidos" +
+                    "?mensaje=¡No te arrepentirás de repetir, pedido en camino!" +
+                    "&tipoMensaje=alert-success");
+            }
+        });
+    });
+
     app.get("/p/misvaloraciones", function(req, res) {
         let criterio = {
             propietario: req.session.usuario

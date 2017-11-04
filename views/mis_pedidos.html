@@ -12,6 +12,7 @@
                                 <th>Precio</th>
                                 <th class="col-md-1 col-lg-1">Fecha</th>
                                 <th>Valoración</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -19,7 +20,7 @@
                             <div>
                                 <tr>
                                     <td hidden><input type="text" value="{{pedido._id.toString()}}"></td>
-                                    <td>{{ pedido.restaurante }}</td>
+                                    <td id="nombreRestaurante">{{ pedido.restaurante }}</td>
                                     <td>{{ pedido.precio }}</td>
                                     <td>{{ pedido.elapsedTime }}</td>
                                     {% if pedido.valoracion != null %}
@@ -33,6 +34,11 @@
                                     {% else %}
                                     <td><button type="button" class="btn btn-info addValoracion" data-toggle="modal" data-target="#valoracionModal">Valorar</button></td>
                                     {% endif %}
+                                    <th>
+                                        <button id="btRepetirPedido" class="btn btn-primary right pointer"  data-toggle="modal" data-target="#confirmacionDialog">
+                                            Repetir pedido
+                                        </button>
+                                    </th>
                                 </tr>
                             </div>
                             {% endfor %}
@@ -43,6 +49,7 @@
         </div>
     </div>
 </main>
+<!-- Modal de valoración -->
 <div class="modal fade" id="valoracionModal" tabindex="-1" role="dialog" aria-labelledby="valoracionModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -76,6 +83,33 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-primary">Valorar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Modal de confirmación -->
+<div class="modal fade" id="confirmacionDialog" tabindex="-1" role="dialog" aria-labelledby="confirmacionLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmacionLabel">Repetir pedido</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/p/repetir" method="post">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="modal-body">
+                            <p>¿Estás seguro que quieres repetir el pedido?</p>
+                        </div>
+                        <input id="repetirPedidoId" type="text" name="idPedido" hidden>
+                    </div>
+                </div>            
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Repetir</button>
                 </div>
             </form>
         </div>
