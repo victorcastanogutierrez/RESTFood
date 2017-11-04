@@ -7,24 +7,170 @@
                 <div class="stepwizard">
                     <div class="stepwizard-row">
                         <div class="stepwizard-step">
-                            <button id="btnInfo" onclick="atrasAInfo()" type="button" class="btn btn-primary btn-circle">1</button>
+                            <button id="btnPersonal" type="button" class="btn btn-primary btn-circle">1</button>
                             <p>Información Personal</p>
                         </div>
                         <div class="stepwizard-step">
-                            <button id="btnMenu" onclick="goToMakeMenu()" type="button" class="btn btn-default btn-circle">2</button>
+                            <button id="btnCompany" type="button" class="btn btn-default btn-circle">2</button>
                             <p>Empresa</p>
                         </div>
                         <div class="stepwizard-step">
-                            <button id="btnConfirmar" onclick="siguienteAConfirmar()" type="button" class="btn btn-default btn-circle">3</button>
+                            <button id="btnCapital" type="button" class="btn btn-default btn-circle">3</button>
+                            <p>Capital</p>
+                        </div>
+                        <div class="stepwizard-step">
+                            <button id="btnLlamada" type="button" class="btn btn-default btn-circle">3</button>
                             <p>Llamada</p>
                         </div>
                     </div>
                 </div>
-                <div>
-
+                <div class=" col-md-12" id="personal">
+                    <h1>Información de contacto</h1>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                              <input class="form-check-input" type="radio" name="sr" checked id="sr" value="sr" checked>
+                                Sr
+                        </label>
+                        <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="sr" id="sra" value="sra" checked>
+                                  Sra
+                        </label>
+                    </div>
+                    <label>Nombre</label>
+                    <input type="text" class="form-control" id="nombre" placeholder="Su nombre" required>
+                    <br/>
+                    <label>Apellidos</label>
+                    <input type="text" class="form-control" id="apellidos" placeholder="Sus apellidos" required>
+                    <br/>
+                    <label>País</label>
+                    <input type="text" class="form-control" id="pais" placeholder="Su nombre" required>
+                    <br/>
+                    <button onclick="goToCompany()" class="btn btn-primary">Siguiente</button>
+                </div>
+                <div class=" col-md-12" id="company">
+                    <h1>Información de tu empresa</h1>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                                  <input class="form-check-input" type="radio" checked name="emp" id="sr" value="empresa" checked/>
+                                    Empresa
+                            </label>
+                        <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="emp" id="sra" value="particular" />
+                                      Particular
+                        </label>
+                    </div>
+                    <label>Nombre Empresa</label>
+                    <input type="text" class="form-control" placeholder="Nombre de la empresa" required>
+                    <br/>
+                    <label>País</label>
+                    <input type="text" class="form-control" placeholder="País de la empresa" required>
+                    <br/>
+                    <label>Puesto que ocupa en la empresa</label>
+                    <input type="text" class="form-control" placeholder="Su puesto en la empresa" required>
+                    <br/>
+                    <div class="form-check">
+                        <label>Negocio diversificado: </label>
+                        <label class="form-check-label">
+                                      <input class="form-check-input" type="radio"  checked name="divRadio" id="sr" value="empresa" checked/>
+                                        Si
+                                </label>
+                        <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="divRadio" id="sra" value="particular" />
+                                          No
+                            </label>
+                    </div>
+                    <div class="form-check">
+                        <label>Inversion en otras empresas: </label>
+                        <label class="form-check-label">
+                                          <input class="form-check-input" type="radio" name="inv" id="sr" value="empresa" checked/>
+                                            Si
+                                    </label>
+                        <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="inv" id="sra" value="particular" />
+                                              No
+                                </label>
+                    </div>
+                    <div class="form-check">
+                        <label>Sector de la empresa: </label>
+                        <label class="form-check-label">
+                                          <input class="form-check-input" type="radio" name="sec" id="sr" value="empresa" checked/>
+                                            Inversiones
+                                    </label>
+                        <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="sec" id="sra" value="particular" />
+                                              Banca privada
+                                </label>
+                        <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="sec" id="sra" value="particular" />
+                                          Otros
+                            </label>
+                    </div>
+                    <br/>
+                    <div class="botonera">
+                        <button onclick="atrasAPersonal()" class="btn btn-primary">Atrás</button>
+                        <button onclick="aCapital()" class="btn btn-primary right">Siguiente</button>
+                    </div>
+                </div>
+                <div class=" col-md-12" id="capital">
+                    <h1>Capital</h1>
+                    <label>Capital máximo:</label>
+                    <input type="number" min=0 class="form-control" placeholder="1000€" required>
+                    <br/>
+                    <label>Capital mínimo</label>
+                    <input type="number" min=0 class="form-control" placeholder="500€" required>
+                    <br/>
+                    <div class="form-check">
+                        <label>Disponibilidad de capital</label>
+                        <label class="form-check-label">
+                                          <input class="form-check-input" type="radio" name="disp" id="sr" value="empresa" checked/>
+                                            Inmediato
+                                    </label>
+                        <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="disp" id="sra" value="particular" />
+                                              Más de un mes
+                                </label>
+                        <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="disp" id="sra" value="particular" />
+                                          Más de seis meses
+                            </label>
+                        <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="disp" id="sra" value="particular" />
+                                      Más de un año
+                        </label>
+                    </div>
+                    <div class="botonera">
+                        <button onclick="atrasACompany()" class="btn btn-primary">Atrás</button>
+                        <button onclick="aLlamada()" class="btn btn-primary right">Siguiente</button>
+                    </div>
+                </div>
+                <div class=" col-md-12" id="llamada">
+                    <h1>Contacto</h1>
+                    <div class="form-check">
+                        <label>Dese que se le llame: </label>
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="llamsi" id="llamsi" value="empresa" checked/>
+                                                Si
+                                        </label>
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="llamno" id="llamno" value="particular" />
+                                                  No
+                        </label>
+                    </div>
+                    <label>Número de contacto:</label>
+                    <input type="number" min=0 class="form-control" placeholder="Sú numero de telefono" required>
+                    <br/>
+                    <label>Día llamada</label>
+                    <input type="date" class="form-control" placeholder="" required>
+                    <br/>
+                    <label>Hora de  llamada</label>
+                    <input type="time" class="form-control" placeholder="" required>
+                    <br/>
+                    <div class="botonera">
+                        <button onclick="atrasACapital()" class="btn btn-primary">Atrás</button>
+                        <button onclick="confirmar()" class="btn btn-primary right">Confirmar</button>
+                    </div>
                 </div>
             </div>
-        </div>
 </main> {% endblock %} {% block script_adicional %}
-<script src="../scripts/addRestaurant.js"></script>
+<script src="../scripts/form_inversores.js"></script>
 {% endblock %}

@@ -349,3 +349,10 @@ a:hover {
 .star-rating .fa-star {
     color: yellow;
 }
+
+#company,
+#capital,
+#llamada {
+    display: none;
+    flex-direction: column;
+}
