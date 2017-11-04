@@ -1,0 +1,30 @@
+{% block extra_nav %} {% include "./private_nav.html" %} {% endblock %} {% extends "base.html" %} {% block contenido_principal %}
+<main>
+    <div class="py-5">
+        <div class="container">
+            <div class="row">
+                <div id="alertDiv" class="alert alert-danger"></div>
+                <div class="stepwizard">
+                    <div class="stepwizard-row">
+                        <div class="stepwizard-step">
+                            <button id="btnInfo" onclick="atrasAInfo()" type="button" class="btn btn-primary btn-circle">1</button>
+                            <p>Información Personal</p>
+                        </div>
+                        <div class="stepwizard-step">
+                            <button id="btnMenu" onclick="goToMakeMenu()" type="button" class="btn btn-default btn-circle">2</button>
+                            <p>Empresa</p>
+                        </div>
+                        <div class="stepwizard-step">
+                            <button id="btnConfirmar" onclick="siguienteAConfirmar()" type="button" class="btn btn-default btn-circle">3</button>
+                            <p>Llamada</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+
+                </div>
+            </div>
+        </div>
+</main> {% endblock %} {% block script_adicional %}
+<script src="../scripts/addRestaurant.js"></script>
+{% endblock %}
