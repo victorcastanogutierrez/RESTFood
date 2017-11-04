@@ -26,6 +26,11 @@ input[type='checkbox'] {
     display: inline-flex;
 }
 
+.table-responsive {
+    height: 90%;
+    overflow-y: scroll;
+}
+
 .bgImage {
     background-image: url("http://www.domainedefontenille.com/image/images_site/33/le-champ-des-lunes-restaurant-gastronomique-au-coeur-du-luberon-fond-background.jpg");
     background-size: cover;

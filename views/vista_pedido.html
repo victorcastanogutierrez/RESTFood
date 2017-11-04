@@ -1,43 +1,44 @@
 {% block extra_nav %} {% include "./private_nav.html" %} {% endblock %} {% extends "base.html" %} {% block contenido_principal %}
-<div id="restaurante" class="py-5">
-    <div class="container">
-        <div class="row">
-            <div id="alertDiv" class="alert alert-danger"></div>
-            <div class="col-md-8">
-                <h1 class="">{{restaurante.nombre}}</h1>
-                <br/>
-                <p hidden id="hidden">{{restaurante._id.toString()}}</p>
-                <table class="table">
-                    <tbody>
-                        {% for plato in restaurante.menu %}
-                        <tr>
-                            <td><input class="form-check-input" type="checkbox" id="check{{plato.id}}" value="{{plato.nombre}}-{{plato.precio}}€"> </td>
-                            <td>{{plato.nombre}} {% if plato.oferta == 'true' %}<span class="badge badge-warning">Oferta!</span> {% endif %}
-                            </td>
-                            <td>{{plato.precio}}€</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-md-4">
-                <br/>
-                <br/>
-                <br/>
-                <div class="card">
-                    <div class="card-header moreBrown">{{restaurante.nombre}}</div>
-                    <div class="card-body brown" id="pedidos">
-                        <h4 class="center darkbrown">Tú pedido</h4>
-                        <p id="contenidoPedido" class="p-y-1"></p>
-                        <p id="totalPedido">Total : 0€</p>
-                        <button onclick="hacerPedido()" class="btn btn-primary center">Pedir</button>
+<main>
+    <div id="alertDiv" class="alert alert-danger"></div>
+    <div id="restaurante" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <h1 class="">{{restaurante.nombre}}</h1>
+                    <br/>
+                    <p hidden id="hidden">{{restaurante._id.toString()}}</p>
+                    <table class="table">
+                        <tbody>
+                            {% for plato in restaurante.menu %}
+                            <tr>
+                                <td><input class="form-check-input" type="checkbox" id="check{{plato.id}}" value="{{plato.nombre}}-{{plato.precio}}€"> </td>
+                                <td>{{plato.nombre}} {% if plato.oferta == 'true' %}<span class="badge badge-warning">Oferta!</span> {% endif %}
+                                </td>
+                                <td>{{plato.precio}}€</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-4">
+                    <br/>
+                    <br/>
+                    <br/>
+                    <div class="card">
+                        <div class="card-header moreBrown">{{restaurante.nombre}}</div>
+                        <div class="card-body brown" id="pedidos">
+                            <h4 class="center darkbrown">Tú pedido</h4>
+                            <p id="contenidoPedido" class="p-y-1"></p>
+                            <p id="totalPedido">Total : 0€</p>
+                            <button onclick="hacerPedido()" class="btn btn-primary center">Pedir</button>
+                        </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
-</div>
+</main>
 {% endblock %} {% block script_adicional %}
 <script src="/scripts/ui_functions.js"></script>
 {% endblock %}
