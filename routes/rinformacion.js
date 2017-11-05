@@ -6,5 +6,10 @@ module.exports = function(app, swig) {
         res.send(respuesta);
     });
 
+    app.get("/descripcion", function(req, res) {
+        
+        var respuesta = swig.renderFile("views/descripcion.html", {});
+        res.send(respuesta);
+    });
 
 }

@@ -31,14 +31,40 @@
                             <h4 class="center darkbrown">Tú pedido</h4>
                             <p id="contenidoPedido" class="p-y-1"></p>
                             <p id="totalPedido">Total : 0€</p>
-                            <button onclick="hacerPedido()" class="btn btn-primary center">Pedir</button>
+                            <button type="button" class="btn btn-primary repitePedidoBt" data-toggle="modal" data-target="#confirmacionDialog">Pedir</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- Modal de confirmación -->
+    <div class="modal fade" id="confirmacionDialog" tabindex="-1" role="dialog" aria-labelledby="confirmacionLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmacionLabel">Realizar pedido</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="modal-body">
+                            <p>¿Estás seguro que quieres realizar el pedido?</p>
+                        </div>
+                        <input id="repetirPedidoId" type="text" name="pedidoRepetirId" hidden>
+                    </div>
+                </div>            
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary" onclick="hacerPedido()">Pedir</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
+
 {% endblock %} {% block script_adicional %}
 <script src="/scripts/ui_functions.js"></script>
 {% endblock %}

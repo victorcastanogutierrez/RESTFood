@@ -360,3 +360,16 @@ a:hover {
     display: none;
     flex-direction: column;
 }
+
+.cardInfo p, .cardInfo h5 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    text-align: justify;
+}
+
+.cardInfo li {
+    list-style: none;
+    text-align: justify;
+    margin-top: 1rem;
+    padding-right: 1rem;
+}
